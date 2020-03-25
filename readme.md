@@ -1,4 +1,6 @@
-# Read-More.js
+# Read-Smore
+
+(cause read-more was already taken 😉)
 
 A little js component / thing for adding a read more / read less feature with pure js.
 
@@ -17,10 +19,10 @@ Highlights:
 
 ## Install (via npm)
 
-`npm i read-more-js`
+`npm i read-smore`
 
 
-## Useage
+## Usage
 
 ReadMore just looks for the class `js-read-more`.
 
@@ -43,7 +45,7 @@ A few baseline styles are provided.
 
 ### Import and init from npm
 ```
-import ReadMore from 'read-more-js'
+import ReadMore from 'read-smore'
 
 ReadMore.init()
 ```
@@ -78,3 +80,9 @@ Thinking the solution is to destroy and rebuild via a click event. Or, at least 
 
 `src/lib` includes ES5 and ES6 versions, in addition to baseline styles as scss are included.
 `src/package` includes es6 and css that's packaged up with [`microbundle`]() for `npm` distribution.
+
+
+## Todo
+- Rename everything to 'ReadSmore'
+- Provide a solution for injected content
+- Add demo to gh-pages

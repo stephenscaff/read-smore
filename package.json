@@ -1,17 +1,17 @@
 {
   "name": "read-smore",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A simple read more / read less feature in pure js",
   "author": "Stephen Scaff <stephenscaff.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephenscaff/read-more-js"
+    "url": "https://github.com/stephenscaff/read-smore"
   },
   "bugs": {
-    "url": "https://github.com/stephenscaff/read-more-js/issues"
+    "url": "https://github.com/stephenscaff/read-smore/issues"
   },
-  "homepage": "https://github.com/stephenscaff/read-more-js#readme",
+  "homepage": "https://github.com/stephenscaff/read-smore#readme",
   "keywords": [
     "read more",
     "readmore.js",
