@@ -1,0 +1,30 @@
+.read-more {
+  margin-bottom: 1.5em;
+}
+
+.read-more  p:last-child {
+  margin-bottom: 0;
+}
+
+.read-more__link-wrap {
+  display: block;
+}
+
+.read-more__link {
+  font-weight: 700;
+}
+
+.read-more.is-inline,
+.read-more.is-inline p,
+.read-more.is-inline + span  {
+  display: inline;
+}
+
+.read-more.is-inline + span {
+  margin-left: 0.25em
+}
+
+.read-more.is-inline.is-expanded + span {
+  display: inline-block;
+  margin-left: 0;
+}

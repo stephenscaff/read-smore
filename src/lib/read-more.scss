@@ -1,0 +1,37 @@
+//--------------------------------------------
+// Read More
+// Some baseline styles
+//--------------------------------------------
+.read-more {
+  margin-bottom: 1.5em;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  &__link-wrap {
+    display: block;
+  }
+
+  &__link {
+    font-weight: 700;
+  }
+}
+
+//--------------------------------------------
+// Read More - inline modifier (within original text)
+//--------------------------------------------
+.read-more.is-inline,
+.read-more.is-inline p,
+.read-more.is-inline + span  {
+  display: inline;
+}
+
+.read-more.is-inline + span {
+  margin-left: 0.25em
+}
+
+.read-more.is-inline.is-expanded + span {
+  display: inline-block;
+  margin-left: 0;
+}
