@@ -31,9 +31,14 @@
     "clean": "rm -rf dist",
     "build": "microbundle",
     "dev": "microbundle watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "demo:start": "parcel ./demo/src/index.html --dist-dir ./demo/dist"
   },
   "devDependencies": {
-    "microbundle": "^0.11.0"
+    "@parcel/transformer-sass": "^2.3.2",
+    "eslint": "^8.11.0",
+    "gh-pages": "^3.2.3",
+    "microbundle": "^0.14.2",
+    "parcel": "^2.3.2"
   }
 }
