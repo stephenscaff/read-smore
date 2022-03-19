@@ -68,6 +68,22 @@ if (document.querySelector('.js-read-more')) {
 }
 ```
 
+### Customize
+
+By overwriting the settings object read-smore can be customized:
+
+```
+ReadMore.settings = function(){
+    return {
+        content: document.querySelectorAll('.js-read-more'), 
+        originalContentArr: [],
+        truncatedContentArr: [],
+        moreLink: "Read More",
+        lessLink: "Less Link",
+    }
+};
+```
+
 
 ## Caveats
 
