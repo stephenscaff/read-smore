@@ -1,3 +1,7 @@
+:root {
+  --font-base: 'Work Sans', sans-serif;
+}
+
 *, body, html {
   margin: 0;
   padding:0;
@@ -5,12 +9,11 @@
 }
 
 html, body {
-  background-color: #eee;
-  font-family: "cardo";
+  background-color: #fff;
+  font-family: var(--font-base);
 }
 
 h2, h3 {
-  font-family: "Roboto";
   font-size: 1.75em;
   margin-bottom: 1.25em;
 }
@@ -24,41 +27,92 @@ p {
 
 .page {
   position: relative;
-  max-width: 40em;
-  margin: 2em auto;
-  background-color: #fff;
-  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.1);
+  margin: 0  auto;
   
   &__main {
-    padding: 3em;
-    
+    padding: 3em 0;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 38em;
     @media (min-width: 32em) {
       padding: 6em 4em;
     }
   }
-  
-  &__pretitle {
-     display:block;
-     margin: 0 0 2em;
-  }
-  
-  &__pretitle-link{
-     color: #2d2dc7;
-     font-family: "Roboto";
-     text-decoration:none;
-     transition: color 0.4s ease;
-    
-    &:hover {
-      color: blue;
-    }
-  }
 }
 
+.page-header {
+  padding: 1em 0 4em;
+
+  &__grid {
+    display: flex;
+    align-items: center;
+  }
+
+  &__img {
+    max-width: 8em;
+  }
+
+  &__heading {
+    padding-left: 2em;
+  }
+
+  &__pretitle {
+    display:block;
+  
+   
+    a{
+      color: #2d2dc7;
+      text-decoration:none;
+      transition: color 0.4s ease;
+     
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    margin-bottom: 0.5em;
+  }
+
+}
+
+.post {
+
+  & + & {
+    padding-top: 3em;
+    margin-top: 3em;
+    border-top: 1px solid #ddd;
+  }
+
+  &__title {
+    margin-bottom: 0.5em;
+  }
+
+  &__meta {
+    display: inline-flex;
+    padding: 6px 8px;
+    margin: 0 0 1rem;
+    background: rgb(67 129 255 / 10%);
+    color: #2b227a;
+    border-radius: 1rem;
+    font-family: Monaco;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+  }
+}
 
 .read-more {
   
   &__link {
-    font-family: "Roboto";
     font-weight: 700;
   }
 }

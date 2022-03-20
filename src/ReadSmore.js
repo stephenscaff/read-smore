@@ -1,38 +1,44 @@
-"use strict"
+"use strict";
 
 /**
  * Defaults
  */
 const defaultOptions = {
-  moreLink: "Read More",
-  lessLink: "Less Link",
-  originalContentArr: [],
-  truncatedContentArr: []
+  count: 70,
+  moreText: "Read More",
+  lessText: "Less Link",
+  linkClass: 'read-more__link'
 };
 
 /**
  * ReadSmore
- * @param {HTML element} element 
- * @param {Object} options 
- * @returns 
+ * @param {HTML element} element
+ * @param {Object} options
+ * @returns
  */
- function ReadSmore(element, options) {
+function ReadSmore(element, options) {
   options = Object.assign({}, defaultOptions, options);
 
+  settings = {
+    originalContentArr: [],
+    truncatedContentArr: []
+  };
+
   /**
-   * Init plugin 
+   * Init plugin
    * @public
    */
   function init() {
-    console.log('init')
-    truncateText()
+    console.log("init");
+    
+    truncateText(element);
   }
 
-   /**
-    * Count Words
-    * Helper to handle word count.
-    * @param {string} str - Target content string.
-    */
+  /**
+   * Count Words
+   * Helper to handle word count.
+   * @param {string} str - Target content string.
+   */
   function countWords(str) {
     return str.split(/\s+/).length;
   }
@@ -43,7 +49,7 @@ const defaultOptions = {
    * @param {number} wordsNum - Number of words to show before truncation.
    */
   function ellipseContent(str, wordsNum) {
-    return str.split(/\s+/).slice(0, wordsNum).join(' ') + '...';
+    return str.split(/\s+/).slice(0, wordsNum).join(" ") + "...";
   }
 
   /**
@@ -52,69 +58,69 @@ const defaultOptions = {
    * based on specified word count.
    * Calls createLink() and handleClick() methods.
    */
-  function truncateText() {
-    for (let i = 0; i < element.length; i++) {
-      const originalContent = element[i].innerHTML;
-      const numberOfWords = element[i].dataset.rmWords;
+  function truncateText(el) {
+    for (let i = 0; i < el.length; i++) {
+      const originalContent = el[i].innerHTML;
+      const numberOfWords = el[i].dataset.readSmoreCount || options.count;
       const truncateContent = ellipseContent(originalContent, numberOfWords);
       const originalContentWords = countWords(originalContent);
 
-      options.originalContentArr.push(originalContent);
-      options.truncatedContentArr.push(truncateContent);
+      settings.originalContentArr.push(originalContent);
+      settings.truncatedContentArr.push(truncateContent);
 
       if (numberOfWords < originalContentWords) {
-        element[i].innerHTML = options.truncatedContentArr[i];
+        element[i].innerHTML = settings.truncatedContentArr[i];
         let self = i;
-        createLink(self)
+        createLink(self);
       }
     }
     handleClick(element);
   }
 
- /**
-  * Create Link
-  * Creates and Inserts Read More Link
-  * @param {number} index - index reference of looped item
-  */
+  /**
+   * Create Link
+   * Creates and Inserts Read More Link
+   * @param {number} index - index reference of looped item
+   */
   function createLink(index) {
-    const linkWrap = document.createElement('span');
+    const linkWrap = document.createElement("span");
 
-    linkWrap.className = 'read-more__link-wrap';
+    linkWrap.className = "read-more__link-wrap";
 
     linkWrap.innerHTML = `<a id="read-more_${index}"
                              class="read-more__link"
                              style="cursor:pointer;">
-                             ${options.moreLink}
+                             ${options.moreText}
                          </a>`;
 
     // Inset created link
-    element[index].parentNode.insertBefore(linkWrap, element[index].nextSibling);
-
+    element[index].parentNode.insertBefore(
+      linkWrap,
+      element[index].nextSibling
+    );
   }
 
-   /**
-    * Handle Click
-    * Toggle Click eve
-    */
+  /**
+   * Handle Click
+   * Toggle Click eve
+   */
   function handleClick(el) {
-    const readSmoreLink = document.querySelectorAll('.read-more__link');
+    const readSmoreLink = document.querySelectorAll(`.${options.linkClass}`);
 
     for (let j = 0, l = readSmoreLink.length; j < l; j++) {
+      readSmoreLink[j].addEventListener("click", function () {
+        const moreLinkID = this.getAttribute("id");
+        let index = moreLinkID.split("_")[1];
 
-     readSmoreLink[j].addEventListener('click', function() {
+        el[index].classList.toggle("is-expanded");
 
-        const moreLinkID = this.getAttribute('id');
-        let index = moreLinkID.split('_')[1];
-
-        el[index].classList.toggle('is-expanded');
-
-        if (this.dataset.clicked !== 'true') {
-           el[index].innerHTML = options.originalContentArr[index];
-           this.innerHTML = options.lessLink;
-           this.dataset.clicked = true;
+        if (this.dataset.clicked !== "true") {
+          el[index].innerHTML = settings.originalContentArr[index];
+          this.innerHTML = options.lessText;
+          this.dataset.clicked = true;
         } else {
-          el[index].innerHTML = options.truncatedContentArr[index];
-          this.innerHTML = options.moreLink;
+          el[index].innerHTML = settings.truncatedContentArr[index];
+          this.innerHTML = options.moreText;
           this.dataset.clicked = false;
         }
       });
@@ -127,7 +133,7 @@ const defaultOptions = {
    * Will probably be useful with a destroy method.
    */
   function openAll() {
-    const instances = document.querySelectorAll('.read-more__link');
+    const instances = document.querySelectorAll(".read-more__link");
     for (let i = 0; i < instances.length; i++) {
       content[i].innerHTML = options.truncatedContentArr[i];
       instances[i].innerHTML = options.moreLink;
@@ -136,10 +142,10 @@ const defaultOptions = {
 
   // API
   return {
-    init: init
-  }
+    init: init,
+  };
 }
 
-ReadSmore.options = defaultOptions
+ReadSmore.options = defaultOptions;
 
-export default ReadSmore
+export default ReadSmore;

@@ -1,3 +1,7 @@
+:root {
+  --font-base: "Work Sans", sans-serif;
+}
+
 *, body, html {
   margin: 0;
   padding: 0;
@@ -5,12 +9,11 @@
 }
 
 html, body {
-  background-color: #eee;
-  font-family: "cardo";
+  background-color: #fff;
+  font-family: var(--font-base);
 }
 
 h2, h3 {
-  font-family: "Roboto";
   font-size: 1.75em;
   margin-bottom: 1.25em;
 }
@@ -24,35 +27,75 @@ p {
 
 .page {
   position: relative;
-  max-width: 40em;
-  margin: 2em auto;
-  background-color: #fff;
-  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 .page__main {
-  padding: 3em;
+  padding: 3em 0;
+  margin: 0 auto;
+  width: 95%;
+  max-width: 38em;
 }
 @media (min-width: 32em) {
   .page__main {
     padding: 6em 4em;
   }
 }
-.page__pretitle {
-  display: block;
-  margin: 0 0 2em;
+
+.page-header {
+  padding: 1em 0 4em;
 }
-.page__pretitle-link {
+.page-header__grid {
+  display: flex;
+  align-items: center;
+}
+.page-header__img {
+  max-width: 8em;
+}
+.page-header__heading {
+  padding-left: 2em;
+}
+.page-header__pretitle {
+  display: block;
+}
+.page-header__pretitle a {
   color: #2d2dc7;
-  font-family: "Roboto";
   text-decoration: none;
   transition: color 0.4s ease;
 }
-.page__pretitle-link:hover {
+.page-header__pretitle a:hover {
   color: blue;
+}
+.page-header__title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.page-header__text {
+  margin-bottom: 0.5em;
+}
+
+.post + .post {
+  padding-top: 3em;
+  margin-top: 3em;
+  border-top: 1px solid #ddd;
+}
+.post__title {
+  margin-bottom: 0.5em;
+}
+.post__meta {
+  display: inline-flex;
+  padding: 6px 8px;
+  margin: 0 0 1rem;
+  background: rgba(67, 129, 255, 0.1);
+  color: #2b227a;
+  border-radius: 1rem;
+  font-family: Monaco;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  line-height: 1;
 }
 
 .read-more__link {
-  font-family: "Roboto";
   font-weight: 700;
 }
 
