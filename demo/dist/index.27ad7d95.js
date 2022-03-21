@@ -522,7 +522,7 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _src = require("../../src");
 var _srcDefault = parcelHelpers.interopDefault(_src);
-const readMores = document.querySelectorAll('.js-read-more');
+const readMores = document.querySelectorAll('.js-read-smore');
 const rm = _srcDefault.default(readMores);
 rm.init();
 
@@ -567,10 +567,17 @@ exports.default = _readSmoreJsDefault.default;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 "use strict";
+function noTags(str) {
+    return str.replace(/(<([^>]+)>)/ig, '');
+}
+function noSpacing(str) {
+    return str.replace(/\s/g, "");
+}
 /**
  * Defaults
  */ const defaultOptions = {
     count: 70,
+    countType: 'words',
     moreText: "Read More",
     lessText: "Less Link",
     linkClass: 'read-more__link'
@@ -602,11 +609,26 @@ parcelHelpers.defineInteropFlag(exports);
         return str.split(/\s+/).length;
     }
     /**
+   * Count Chars
+   * Helper to count by character
+   * @param {string} str - Target content string.
+   */ function countChars(str) {
+        console.log('cars', str.length);
+        return str.length;
+    }
+    /**
    * Ellpise Content
    * @param {string} str - content string.
    * @param {number} wordsNum - Number of words to show before truncation.
-   */ function ellipseContent(str, wordsNum) {
+   */ function ellipseContents(str, wordsNum) {
         return str.split(/\s+/).slice(0, wordsNum).join(" ") + "...";
+    }
+    function ellipse(str, max, isChars = false) {
+        if (isChars) {
+            console.log('is chars', str, max);
+            return str.split('').slice(0, max).join("") + "...";
+        }
+        return str.split(/\s+/).slice(0, max).join(" ") + "...";
     }
     /**
    * Truncate Text
@@ -616,12 +638,14 @@ parcelHelpers.defineInteropFlag(exports);
    */ function truncateText(el) {
         for(let i = 0; i < el.length; i++){
             const originalContent = el[i].innerHTML;
-            const numberOfWords = el[i].dataset.readSmoreCount || options.count;
-            const truncateContent = ellipseContent(originalContent, numberOfWords);
-            const originalContentWords = countWords(originalContent);
+            const numberCount = el[i].dataset.readSmoreCount || options.count;
+            const countType = el[i].dataset.readSmoreType || options.countType;
+            const truncateContent = ellipse(originalContent, numberCount, countType === 'chars' ? true : false);
+            //const originalContentWords = countWords(originalContent);
+            const originalContentCount = countType === 'chars' ? countChars(originalContent) : countWords(originalContent);
             settings.originalContentArr.push(originalContent);
             settings.truncatedContentArr.push(truncateContent);
-            if (numberOfWords < originalContentWords) {
+            if (numberCount < originalContentCount) {
                 element[i].innerHTML = settings.truncatedContentArr[i];
                 let self = i;
                 createLink(self);

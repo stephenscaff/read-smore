@@ -1,6 +1,6 @@
 import ReadSmore from '../../src'
 
-const readMores = document.querySelectorAll('.js-read-more')
+const readMores = document.querySelectorAll('.js-read-smore')
 
 const rm = ReadSmore(readMores)
 
