@@ -40,8 +40,7 @@ function ReadSmore(element, options) {
    */
   function init() {
     console.log("init");
-    
-    truncateText(element);
+    truncator(element);
   }
 
   /**
@@ -66,12 +65,9 @@ function ReadSmore(element, options) {
   /**
    * Ellpise Content
    * @param {string} str - content string.
-   * @param {number} wordsNum - Number of words to show before truncation.
+   * @param {number} max - Number of words||chars2 to show before truncation.
+   * * @param {number} max - Number of words to show before truncation.
    */
-  function ellipseContents(str, wordsNum) {
-    return str.split(/\s+/).slice(0, wordsNum).join(" ") + "...";
-  }
-
   function ellipse(str, max, isChars = false){
     if (isChars) {
       console.log('is chars', str, max)
@@ -80,14 +76,15 @@ function ReadSmore(element, options) {
     return str.split(/\s+/).slice(0, max).join(" ") + "...";
   }
 
+  
   /**
    * Truncate Text
    * Truncate and ellipses contented content
    * based on specified word count.
    * Calls createLink() and handleClick() methods.
    */
-  function truncateText(el) {
-    for (let i = 0; i < el.length; i++) {
+  function truncator(el) {
+    for (let i=0, n=el.length; i < n; ++i) {
       const originalContent = el[i].innerHTML;
       const numberCount = el[i].dataset.readSmoreCount || options.count;
       const countType = el[i].dataset.readSmoreType || options.countType;
@@ -149,14 +146,14 @@ function ReadSmore(element, options) {
         const moreLinkID = this.getAttribute("id");
         let index = moreLinkID.split("_")[1];
 
-        el[index].classList.toggle("is-expanded");
+        element[index].classList.toggle("is-expanded");
 
         if (this.dataset.clicked !== "true") {
-          el[index].innerHTML = settings.originalContentArr[index];
+          element[index].innerHTML = settings.originalContentArr[index];
           this.innerHTML = options.lessText;
           this.dataset.clicked = true;
         } else {
-          el[index].innerHTML = settings.truncatedContentArr[index];
+          element[index].innerHTML = settings.truncatedContentArr[index];
           this.innerHTML = options.moreText;
           this.dataset.clicked = false;
         }
