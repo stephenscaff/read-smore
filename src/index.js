@@ -1,2 +1,2 @@
-import ReadSmore from './ReadSmore.js'
-export default ReadSmore
+import ReadSmore from './read-smore.js';
+export default ReadSmore;

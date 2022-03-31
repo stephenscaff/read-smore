@@ -7,7 +7,7 @@
     <script src="/index.27ad7d95.js" defer=""></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
     <main>
@@ -30,13 +30,158 @@
               </div>
             </div></header>
 
-          <section class="posts">
+            <section class="space-md">
+              <h3>About</h3>
+              <div class="js-read-smore" data-read-smore-chars="130">
+              <p>A customizable, lightweight vanilla JS plugin for truncating content with a Read more / Read less move, whilst preserving the original markup. Able to truncate by max word or character count.</p>
+            </div>
+            </section>
+
+            <section class="space-md">
+              <h3>Highlights</h3>
+              <ul>
+                <li>Super duper lightweight, no dependencies, vanilla js.</li>
+                <li>Supports truncating content by max Word or Character count.</li>
+                <li>Adds ellipse after truncated content.</li>
+                <li>Preserves existing markup (nice).</li>
+                <li>Read more / Read less text is customizable.</li>
+                <li>Use data attributes to control max words/characters count</li>
+                <li>Block level class name is customizable</li>
+                <li>Read More text can be block level or inline via provided css</li>
+              </ul>
+            </section>
+            <section class="space-md">
+              <h3>Install (via npm)</h3>
+              <pre class="code-block"><code>npm i read-smore</code></pre>
+            </section>
+
+            <section class="space-md">
+              <h3>Useage</h3>
+
+              <h4>Add to your project</h4>
+              <div class="code-block is-lg">
+<pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
+
+const readMores = document.querySelectorAll('.js-read-smore')
+ReadSmore(readMores).init()</code></pre>
+              </div>
+              </section>
+
+              <section class="space-md">
+              <h4>Example markup - by max word count</h4>
+              <div class="code-block is-lg"><pre class="code-block__pre"><code>&lt;div 
+  class="js-read-smore" 
+  data-read-smore-words="70" 
+>
+  &lt;p>Stuff and words and stuff and words.&lt;/p>
+  &lt;p>Words and stuff and words and stuff.&lt;/p>
+  &lt;!-- more HTML content -->
+&lt;/div>
+</code></pre>
+              </div>
+              </section>
+
+              <section class="space-md">
+              <h4>Example markup - by max character count</h4>
+              <div class="code-block is-lg"><pre class="code-block__pre"><code>&lt;div 
+  class="js-read-smore" 
+  data-read-smore-chars="150" 
+>
+  &lt;p>Stuff and words and stuff and words.&lt;/p>
+  &lt;p>Words and stuff and words and stuff.&lt;/p>
+  &lt;!-- more HTML content -->
+&lt;/div>
+</code></pre>
+              </div>
+              </section>
+              
+              <section class="space-md">
+              <h4>Provide Options</h4>
+              <div class="code-block is-lg">
+<pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
+
+const readMores = document.querySelectorAll('.js-read-smore')
+
+const options = {
+  blockClassName: 'read-more',
+  moreText: 'Custom more text',
+  lessText: 'Custom less text'
+}
+
+ReadSmore(readMores, options).init()</code></pre>
+              </div>
+              </section>
+
+              <section class="space-md">
+                <h3>Options</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Option</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <code>blockClassName</code>
+                      </td>
+                      <td>String</td>
+                      <td>Sets Block level/parent class name</td>
+                      <td>read-smore</td>
+                    </tr>
+                    <tr>
+                      <td><code>moreText</code></td>
+                      <td>String</td>
+                      <td>Sets "Read more" text</td>
+                      <td>Read more</td>
+                    </tr>
+                    <tr>
+                      <td><code>lessText</code></td>
+                      <td>String</td>
+                      <td>Sets "Read less" text</td>
+                      <td>Read less</td>
+                    </tr>
+                    <tr>
+                      <td><code>wordsCount</code></td>
+                      <td>Number</td>
+                      <td>Sets max word count. Read Smore defaults to by word if nothing is defined</td>
+                      <td>70</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="space-md">
+                <h4>Inline Read more</h4>
+                <p>By default the Read more text sits below the content block. However, you can make it inlined with the ellipsed text by importing the provided css</p>
+
+                <div class="code-block is-lg">
+                  <pre class="code-block__pre"><code>@import 'read-more/read-more.css'</code></pre>
+                </div>
+                <br>
+                <p>Then provide the the data-attribute <code class="code-inline">data-read-smore-inline="true"</code></p>
+
+
+                <div class="code-block is-lg">
+  <pre class="code-block__pre"><code>&lt;div 
+    class="js-read-smore" 
+    data-read-smore-words="70" 
+    data-read-smore-inline="true">
+&lt;/div></code></pre>
+              </div>
+              </section>
+          <br>
+          <section class="posts space-md">
+            <h3>Demo / Examples</h3>
             <article class="post">
               <span class="post__meta">30 words</span>
               <h2 class="post__title">We choose to go to the moon</h2>
 
-              <div class="post__content js-read-smore" data-read-smore-count="30">
-                <p>We choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
+              <div class="post__content js-read-smore" data-read-smore-chars="120">
+              <p>Wee choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
             
                 <p>Because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.</p>
           
@@ -50,7 +195,7 @@
               <span class="post__meta">20 words</span>
               <h2 class="post__title">We choose to go to the moon</h2>
 
-              <div class="post__content js-read-smore" data-read-smore-count="20">
+              <div class="post__content js-read-smore" data-read-smore-words="40">
                 <p>We choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
             
                 <p>Because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.</p>
@@ -66,7 +211,7 @@
               <span class="post__meta">60 chars</span>
               <h2 class="post__title">We choose to go to the moon</h2>
 
-              <div class="post__content js-read-smore" data-read-smore-count="100" data-read-smore-type="chars">
+              <div class="post__content js-read-smore" data-read-smore-count="100" data-read-smore-chars="100" data-read-smore-inline="true" data-read-smore-type="chars">
                 <p>We choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
             
                 <p>Because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.</p>

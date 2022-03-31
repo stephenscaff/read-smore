@@ -24,9 +24,9 @@ Highlights:
 
 ## Usage
 
-ReadMore just looks for the class `js-read-more`.
+ReadMore just looks for the class `js-read-smore`.
 
-Specify the desired words before truncation with the data attribute `data-rm-words`.
+Specify the desired words before truncation with the data attribute `data-read-smore-words`.
 
 A few baseline styles are provided.
 
@@ -37,7 +37,7 @@ A few baseline styles are provided.
 ```
 
 <article>
-  <div class="read-more js-read-more" data-rm-words="60">
+  <div class="read-more js-read-more" data-read-smore-count="60">
     <p><!-- some content call here --></p>
   </div>
 </article>

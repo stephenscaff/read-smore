@@ -1,5 +1,16 @@
+@import '../../src/read-smore.css';
+
+$mq-md: 32em;
+
 :root {
   --font-base: 'Work Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monaco, monospace;
+  --color-dark: #2d130d;
+  --color-light: #e7d0b2;
+  --color-pink-light: #ffeaf2;
+  --color-pink-mid: #d0828f;
+  --color-pink-dark: #8a0060;
+  --mq-md: 32em;
 }
 
 *, body, html {
@@ -8,15 +19,25 @@
   line-height: 1.5;
 }
 
+ 
 html, body {
   background-color: #fff;
   font-family: var(--font-base);
+  color: var(--color-dark);
 }
 
 h2, h3 {
   font-size: 1.75em;
+  color: var(--color-dark);
   margin-bottom: 1.25em;
 }
+
+h4 {
+  font-size: 1.2em;
+  color: var(--color-dark);
+  margin-bottom: 1em;
+}
+
 p {
   font-size: 1.1em;
   margin-bottom: 1.2em;
@@ -24,6 +45,61 @@ p {
   line-height: 1.6;
 }
 
+a {
+  color: var(--color-pink-mid);
+  text-decoration:none;
+  transition: color 0.4s ease;
+
+  &:hover {
+    color: var(--color-pink-dark);
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+table {
+  padding: 1em 0;
+
+  th {
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid;
+  }
+
+  td {
+    padding: 1em;
+    text-align: left;
+    padding: 1em 1em 1em 0em;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-light);
+  }
+  td:nth-of-type(4) {
+    min-width: 6em;
+  }
+
+  td code {
+    font-size: 0.9em;
+  }
+}
+
+.grid {
+  width: 98%;
+  max-width: 38em;
+}
+
+.space-sm {
+  padding: 1em 0;
+}
+
+.space-md {
+  padding: 2em 0;
+
+  & + & {
+    padding-top: 0;
+  }
+}
 
 .page {
   position: relative;
@@ -33,15 +109,15 @@ p {
     padding: 3em 0;
     margin: 0 auto;
     width: 95%;
-    max-width: 38em;
-    @media (min-width: 32em) {
+    max-width: 42em;
+    @media (min-width: $mq-md) {
       padding: 6em 4em;
     }
   }
 }
 
 .page-header {
-  padding: 1em 0 4em;
+  padding: 1em 0 1em;
 
   &__grid {
     display: flex;
@@ -58,17 +134,6 @@ p {
 
   &__pretitle {
     display:block;
-  
-   
-    a{
-      color: #2d2dc7;
-      text-decoration:none;
-      transition: color 0.4s ease;
-     
-      &:hover {
-        color: blue;
-      }
-    }
   }
 
 
@@ -83,6 +148,40 @@ p {
 
 }
 
+
+.code-block {
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 1em;
+  border-radius: 1em;
+  overflow-x: hidden;
+  
+  @media (min-width: $mq-md) {
+    padding: 2em;
+  }
+ 
+  &__pre {
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+  }
+
+  &.is-lg {
+    padding: 2em 1em;
+    @media (min-width: $mq-md) {
+      padding: 2em;
+    }
+  }
+}
+
+.code-inline {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border-radius: 5px;
+  padding: 0.25em 0.5rem;
+  font-size: 0.9em;
+}
+
 .post {
 
   & + & {
@@ -92,6 +191,7 @@ p {
   }
 
   &__title {
+    font-size: 1.35em;
     margin-bottom: 0.5em;
   }
 
@@ -99,10 +199,10 @@ p {
     display: inline-flex;
     padding: 6px 8px;
     margin: 0 0 1rem;
-    background: rgb(67 129 255 / 10%);
-    color: #2b227a;
+    background: var(--color-pink-light);
+    color: var(--color-pink-dark);
     border-radius: 1rem;
-    font-family: Monaco;
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -110,7 +210,7 @@ p {
   }
 }
 
-.read-more {
+.read-smore {
   
   &__link {
     font-weight: 700;
@@ -118,12 +218,3 @@ p {
 }
 
 // Add is-line to wrapper to support a read more inline with the content.
-.read-more.is-inline,
-.read-more.is-inline p,
-.read-more.is-inline + span  {
-  display: inline;
-}
-
-.read-more.is-inline + span {
-  margin-left: 0.25em
-}

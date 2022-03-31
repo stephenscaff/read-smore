@@ -523,10 +523,177 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _src = require("../../src");
 var _srcDefault = parcelHelpers.interopDefault(_src);
 const readMores = document.querySelectorAll('.js-read-smore');
-const rm = _srcDefault.default(readMores);
-rm.init();
+_srcDefault.default(readMores).init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../src":"8lqZg"}],"gkKU3":[function(require,module,exports) {
+},{"../../src":"8lqZg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8lqZg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _readSmoreJs = require("./read-smore.js");
+var _readSmoreJsDefault = parcelHelpers.interopDefault(_readSmoreJs);
+exports.default = _readSmoreJsDefault.default;
+
+},{"./read-smore.js":"7XPz6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7XPz6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _utils = require("./utils");
+'use strict';
+/**
+ * Defaults
+ */ const defaultOptions = {
+    blockClassName: 'read-smore',
+    wordsCount: 70,
+    charsCount: 150,
+    moreText: 'Read More',
+    lessText: 'Read Less',
+    isInline: false
+};
+/**
+ * ReadSmore
+ * @param {HTML element} element
+ * @param {Object} options
+ * @returns
+ */ function ReadSmore(element, options) {
+    options = Object.assign({
+    }, defaultOptions, options);
+    // Internal Settings
+    let settings = {
+        originalContentArr: [],
+        truncatedContentArr: []
+    };
+    /**
+   * Init plugin
+   * Loop over instances and begin truncation procress
+   * @public
+   */ function init() {
+        for(let i = 0, n = element.length; i < n; ++i)truncate(element[i], i);
+    }
+    /**
+   * Ellpise Content
+   * Handles content ellipse by words or charactes
+   * @param {String} str - content string.
+   * @param {Number} max - Number of words||chars2 to show before truncation.
+   * @param {Bool} isChars - is by chars
+   */ function ellipse(str, max, isChars = false) {
+        // Trim starting/ending empty spaces
+        const trimedSpaces = _utils.trimSpaces(str);
+        if (isChars) return trimedSpaces.split('').slice(0, max).join('') + '...';
+        return trimedSpaces.split(/\s+/).slice(0, max).join(' ') + '...';
+    }
+    /**
+   * Truncate Logic
+   * @param {HTML Elmenent} el - single element instance
+   * @param {Number} i - current instance index
+   */ function truncate(el, idx) {
+        // User defined word count or defaults
+        const numberWords = el.dataset.readSmoreWords || options.wordsCount;
+        // User defined chars (if exists) or word count
+        const numberCount = el.dataset.readSmoreChars || numberWords;
+        const originalContent = el.innerHTML;
+        // Ellipser: content, count, is chars bool
+        const truncateContent = ellipse(originalContent, numberCount, el.dataset.readSmoreChars ? true : false);
+        const originalContentCount = el.dataset.readSmoreWords ? _utils.getWordCount(originalContent) : _utils.getCharCount(originalContent);
+        settings.originalContentArr.push(originalContent);
+        settings.truncatedContentArr.push(truncateContent);
+        if (numberCount < originalContentCount) {
+            el.innerHTML = settings.truncatedContentArr[idx];
+            let self = idx;
+            createLink(self);
+        }
+    }
+    /**
+   * Create Link
+   * Creates and Inserts Read More Link
+   * @param {number} idx - index reference of looped item
+   */ function createLink(idx) {
+        const linkWrap = document.createElement('span');
+        linkWrap.className = `${options.blockClassName}__link-wrap`;
+        linkWrap.innerHTML = `<a id=${options.blockClassName}_${idx}
+                             class=${options.blockClassName}__link
+                             style="cursor:pointer;">
+                             ${options.moreText}
+                          </a>`;
+        // Inset created link
+        element[idx].after(linkWrap);
+        // Call link click handler
+        handleLinkClick(idx);
+    }
+    /**
+   * Link Click Listener
+   * @param {number} index - index of clicked link
+   */ function handleLinkClick(idx) {
+        const link = document.querySelector(`#${options.blockClassName}_${idx}`);
+        link.addEventListener('click', (e)=>{
+            element[idx].classList.toggle('is-expanded');
+            const target = e.currentTarget;
+            if (target.dataset.clicked !== 'true') {
+                element[idx].innerHTML = settings.originalContentArr[idx];
+                target.innerHTML = options.lessText;
+                target.dataset.clicked = true;
+            } else {
+                element[idx].innerHTML = settings.truncatedContentArr[idx];
+                target.innerHTML = options.moreText;
+                target.dataset.clicked = false;
+            }
+        });
+    }
+    // API
+    return {
+        init: init
+    };
+}
+ReadSmore.options = defaultOptions;
+exports.default = ReadSmore;
+
+},{"./utils":"jxTvD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxTvD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Count Words
+ * Helper to handle word count.
+ * @param {string} str - Target content string.
+ */ parcelHelpers.export(exports, "countWords", ()=>countWords
+);
+/**
+ * Count Chars
+ * Helper to count by character
+ * @param {string} str - Target content string.
+ */ parcelHelpers.export(exports, "getCharCount", ()=>getCharCount
+);
+parcelHelpers.export(exports, "getWordCount", ()=>getWordCount
+);
+parcelHelpers.export(exports, "noTags", ()=>noTags
+);
+parcelHelpers.export(exports, "noSpacing", ()=>noSpacing
+);
+parcelHelpers.export(exports, "trimSpaces", ()=>trimSpaces
+);
+parcelHelpers.export(exports, "getTagsCount", ()=>getTagsCount
+);
+'use strict';
+function countWords(str) {
+    return str.split(/\s+/).length;
+}
+function getCharCount(str) {
+    return str.length;
+}
+function getWordCount(str) {
+    return str.length;
+}
+function noTags(str) {
+    return str.replace(/(<([^>]+)>)/gi, '');
+}
+function noSpacing(str) {
+    return str.replace(/\s/g, '');
+}
+function trimSpaces(str) {
+    return str.replace(/(^\s*)|(\s*$)/gi, '');
+}
+function getTagsCount(str) {
+    const tags = /(<([^>]+)>)/gi;
+    return ((str || '').match(tags) || []).length;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -556,155 +723,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"8lqZg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _readSmoreJs = require("./ReadSmore.js");
-var _readSmoreJsDefault = parcelHelpers.interopDefault(_readSmoreJs);
-exports.default = _readSmoreJsDefault.default;
-
-},{"./ReadSmore.js":"5SY3Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5SY3Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-"use strict";
-function noTags(str) {
-    return str.replace(/(<([^>]+)>)/ig, '');
-}
-function noSpacing(str) {
-    return str.replace(/\s/g, "");
-}
-/**
- * Defaults
- */ const defaultOptions = {
-    count: 70,
-    countType: 'words',
-    moreText: "Read More",
-    lessText: "Less Link",
-    linkClass: 'read-more__link'
-};
-/**
- * ReadSmore
- * @param {HTML element} element
- * @param {Object} options
- * @returns
- */ function ReadSmore(element, options) {
-    options = Object.assign({
-    }, defaultOptions, options);
-    settings = {
-        originalContentArr: [],
-        truncatedContentArr: []
-    };
-    /**
-   * Init plugin
-   * @public
-   */ function init() {
-        console.log("init");
-        truncator(element);
-    }
-    /**
-   * Count Words
-   * Helper to handle word count.
-   * @param {string} str - Target content string.
-   */ function countWords(str) {
-        return str.split(/\s+/).length;
-    }
-    /**
-   * Count Chars
-   * Helper to count by character
-   * @param {string} str - Target content string.
-   */ function countChars(str) {
-        console.log('cars', str.length);
-        return str.length;
-    }
-    /**
-   * Ellpise Content
-   * @param {string} str - content string.
-   * @param {number} max - Number of words||chars2 to show before truncation.
-   * * @param {number} max - Number of words to show before truncation.
-   */ function ellipse(str, max, isChars = false) {
-        if (isChars) {
-            console.log('is chars', str, max);
-            return str.split('').slice(0, max).join("") + "...";
-        }
-        return str.split(/\s+/).slice(0, max).join(" ") + "...";
-    }
-    /**
-   * Truncate Text
-   * Truncate and ellipses contented content
-   * based on specified word count.
-   * Calls createLink() and handleClick() methods.
-   */ function truncator(el) {
-        for(let i = 0, n = el.length; i < n; ++i){
-            const originalContent = el[i].innerHTML;
-            const numberCount = el[i].dataset.readSmoreCount || options.count;
-            const countType = el[i].dataset.readSmoreType || options.countType;
-            const truncateContent = ellipse(originalContent, numberCount, countType === 'chars' ? true : false);
-            //const originalContentWords = countWords(originalContent);
-            const originalContentCount = countType === 'chars' ? countChars(originalContent) : countWords(originalContent);
-            settings.originalContentArr.push(originalContent);
-            settings.truncatedContentArr.push(truncateContent);
-            if (numberCount < originalContentCount) {
-                element[i].innerHTML = settings.truncatedContentArr[i];
-                let self = i;
-                createLink(self);
-            }
-        }
-        handleClick(element);
-    }
-    /**
-   * Create Link
-   * Creates and Inserts Read More Link
-   * @param {number} index - index reference of looped item
-   */ function createLink(index) {
-        const linkWrap = document.createElement("span");
-        linkWrap.className = "read-more__link-wrap";
-        linkWrap.innerHTML = `<a id="read-more_${index}"
-                             class="read-more__link"
-                             style="cursor:pointer;">
-                             ${options.moreText}
-                         </a>`;
-        // Inset created link
-        element[index].parentNode.insertBefore(linkWrap, element[index].nextSibling);
-    }
-    /**
-   * Handle Click
-   * Toggle Click eve
-   */ function handleClick(el) {
-        const readSmoreLink = document.querySelectorAll(`.${options.linkClass}`);
-        for(let j = 0, l = readSmoreLink.length; j < l; j++)readSmoreLink[j].addEventListener("click", function() {
-            const moreLinkID = this.getAttribute("id");
-            let index = moreLinkID.split("_")[1];
-            element[index].classList.toggle("is-expanded");
-            if (this.dataset.clicked !== "true") {
-                element[index].innerHTML = settings.originalContentArr[index];
-                this.innerHTML = options.lessText;
-                this.dataset.clicked = true;
-            } else {
-                element[index].innerHTML = settings.truncatedContentArr[index];
-                this.innerHTML = options.moreText;
-                this.dataset.clicked = false;
-            }
-        });
-    }
-    /**
-   * Open All
-   * Method to expand all instances on the page.
-   * Will probably be useful with a destroy method.
-   */ function openAll() {
-        const instances = document.querySelectorAll(".read-more__link");
-        for(let i = 0; i < instances.length; i++){
-            content[i].innerHTML = options.truncatedContentArr[i];
-            instances[i].innerHTML = options.moreLink;
-        }
-    }
-    // API
-    return {
-        init: init
-    };
-}
-ReadSmore.options = defaultOptions;
-exports.default = ReadSmore;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["kwnZB","86ByF"], "86ByF", "parcelRequire1eae")
+},{}]},["kwnZB","86ByF"], "86ByF", "parcelRequire1eae")
 
 //# sourceMappingURL=index.27ad7d95.js.map
