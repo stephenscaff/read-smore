@@ -11,12 +11,13 @@
   "bugs": {
     "url": "https://github.com/stephenscaff/read-smore/issues"
   },
-  "homepage": "https://github.com/stephenscaff/read-smore#readme",
+  "homepage": "https://stephenscaff.github.io/read-smore",
   "keywords": [
+    "read smore",
+    "readsmore",
     "read more",
     "readmore.js",
     "read-more-js",
-    "read smore",
     "ellipse",
     "truncate",
     "content",

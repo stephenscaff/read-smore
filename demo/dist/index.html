@@ -1,31 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>ReadSmore.js</title><link rel="stylesheet" href="index.d2d00bfa.css"><script type="module" src="index.3506078f.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet"></head><body> <main> <section class="page"> <div class="grid"> <header class="page-header"> <div class="page-header__grid"> <figure class="page-header__figure"> <img class="page-header__img" src="read-smore-dood.0817e6da.jpg"> </figure> <div class="page-header__heading"> <h1 class="page-header__title">Read Smore</h1> <p class="page-header__text">A vanilla JS Read More plugin / module</p> <div class="page-header__pretitle"> <a href="https://github.com/stephenscaff/readmore" target="_blank">Repo</a> | <a href="/#examples">Examples</a> </div> </div> </div></header> <section id="about" class="space-md"> <h3>About</h3> <div class="js-read-smore" data-read-smore-chars="140"> <p>A customizable, lightweight vanilla JS plugin for truncating content with a Read more / Read less move, whilst preserving the original markup. Able to truncate by max word or character count.</p> <p>Just like the example you're checking out right here.</p> </div> </section> <section id="highlights" class="space-md"> <h3>Highlights</h3> <ul> <li>Super duper lightweight, no dependencies, vanilla js.</li> <li>Supports truncating content by max Word or Character count.</li> <li>Adds ellipse after truncated content.</li> <li>Preserves existing markup (nice).</li> <li>Read more / Read less text is customizable.</li> <li>Use data attributes to control max words/characters count</li> <li>Block level class name is customizable</li> <li>Read More text can be block level or inline via provided css</li> </ul> </section> <section class="space-md"> <h3>Install (via npm)</h3> <pre class="code-block"><code>npm i read-smore</code></pre> </section> <section id="useage" class="space-md"> <h3>Useage</h3> <h4>Add to your project</h4> <div class="code-block is-lg"> <pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>ReadSmore.js</title><link rel="stylesheet" href="index.a74e8830.css"><script type="module" src="index.3506078f.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet"></head><body> <main> <section class="page"> <div class="grid"> <header class="page-header"> <div class="page-header__grid"> <figure class="page-header__figure"> <img class="page-header__img" src="read-smore-dood.0817e6da.jpg"> </figure> <div class="page-header__heading"> <h1 class="page-header__title">Read Smore</h1> <p class="page-header__text">A vanilla JS Read More plugin / module</p> <div class="page-header__pretitle"> <a href="https://github.com/stephenscaff/read-smore" target="_blank">Repo</a> | <a href="/#examples">Examples</a> </div> </div> </div></header> <section id="about" class="space-md"> <h3>About</h3> <div class="js-read-smore" data-read-smore-chars="140"> <p>A customizable, lightweight vanilla JS plugin for truncating content with a Read more / Read less move, whilst preserving the original markup. Able to truncate by max word or character count.</p> <p>Just like the example you're checking out right here.</p> </div> </section> <section id="highlights" class="space-md"> <h3>Highlights</h3> <ul> <li>Super duper lightweight, no dependencies, vanilla js.</li> <li>Supports truncating content by max Word or Character count.</li> <li>Adds ellipse after truncated content.</li> <li>Preserves existing markup (nice).</li> <li>Read more / Read less text is customizable.</li> <li>Use data attributes to control max words/characters count</li> <li>Block level class name is customizable</li> <li>Read More text can be block level or inline via provided css</li> </ul> </section> <section class="space-md"> <h3>Install (via npm)</h3> <pre class="code-block"><code>npm i read-smore</code></pre> </section> <section id="useage" class="space-md"> <h3>Useage</h3> <h4>Add to your project</h4> <div class="code-block is-lg"> <pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
 
+// target all read smore elements
 const readMores = document.querySelectorAll('.js-read-smore')
-ReadSmore(readMores).init()</code></pre> </div> <section class="space-sm"> <h4>Example markup - by max word count</h4> <div class="code-block is-lg"> <pre class="code-block__pre"><code>&lt;div 
+
+// init
+ReadSmore(readMores).init()</code></pre> </div> <section class="space-sm"> <h4>Example by max word count</h4> <p>To truncate content by max <strong>word</strong> count, use the data attribute <br><code class="code-inline">data-read-smore-words=""</code> with desired value. </p> <div class="code-block is-lg"> <pre class="code-block__pre"><code>&lt;div 
       class="js-read-smore" 
       data-read-smore-words="70" 
     >
       &lt;p>Stuff and words and stuff and words.&lt;/p>
       &lt;p>Words and stuff and words and stuff.&lt;/p>
       &lt;!-- more HTML content -->
-    &lt;/div></code></pre> </div> </section> <section class="space-sm"> <h4>Example markup - by max character count</h4> <div class="code-block is-lg"> <pre class="code-block__pre"><code>&lt;div 
-    class="js-read-smore" 
-    data-read-smore-chars="150" 
-  >
-    &lt;p>Stuf2 q3eafeèf and words and stuff and words.&lt;/p>
-    &lt;p>Words and stuff and words and stuff.&lt;/p>
-    &lt;!-- more HTML content -->
-  &lt;/div></code></pre> </div> </section> <section class="space-sm"> <h4>Provide Options</h4> <div class="code-block is-lg"> <pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
+    &lt;/div></code></pre> </div> </section> <section class="space-sm"> <h4>Example by max character count</h4> <p>To truncate content by max <strong>character</strong> count, use the data attribute <br><code class="code-inline">data-read-smore-chars=""</code> with desired value. </p><div class="code-block is-lg"> <pre class="code-block__pre">
+<code>&lt;div 
+  class="js-read-smore" 
+  data-read-smore-chars="150" 
+>
+  &lt;p>Stuff and words and stuff and words.&lt;/p>
+  &lt;p>Words and stuff and words and stuff.&lt;/p>
+  &lt;!-- more HTML content -->
+&lt;/div></code></pre> </div> </section> <section class="space-sm"> <h4>Provide Options</h4> <p>ReadSmore supports a few options, such as editing the more/less text. See Options table below for more.</p> <div class="code-block is-lg"> <pre class="code-block__pre">
+<code>import ReadSmore from 'read-smore'
 
-  const readMores = document.querySelectorAll('.js-read-smore')
+const readMores = document.querySelectorAll('.js-read-smore')
 
-  const options = {
-    blockClassName: 'read-more',
-    moreText: 'Custom more text',
-    lessText: 'Custom less text'
-  }
+const options = {
+  blockClassName: 'read-more',
+  moreText: 'Custom more text',
+  lessText: 'Custom less text'
+}
 
-  ReadSmore(readMores, options).init()</code></pre> </div> </section> </section> <section id="options" class="space-md"> <h3>Options</h3> <table> <thead> <tr> <th>Option</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td> <code>blockClassName</code> </td> <td>String</td> <td>Sets Block level/parent class name</td> <td>read-smore</td> </tr> <tr> <td><code>moreText</code></td> <td>String</td> <td>Sets "Read more" text</td> <td>Read more</td> </tr> <tr> <td><code>lessText</code></td> <td>String</td> <td>Sets "Read less" text</td> <td>Read less</td> </tr> <tr> <td><code>wordsCount</code></td> <td>Number</td> <td>Sets max word count. Read Smore defaults to by word if nothing is defined</td> <td>70</td> </tr> </tbody> </table> </section> <section class="space-md"> <h3>Inline Read more</h3> <p>By default the Read more text sits below the content block. However, you can make it inlined with the ellipsed text by importing the provided css</p> <div class="code-block is-lg"> <pre class="code-block__pre"><code>@import 'read-more/read-more.css'</code></pre> </div> <br> <p>Then provide the the data-attribute <code class="code-inline">data-read-smore-inline="true"</code></p> <div class="code-block is-lg"> <pre class="code-block__pre">
+ReadSmore(readMores, options).init()</code></pre> </div> </section> </section> <section id="options" class="space-md"> <h3>Options</h3> <table> <thead> <tr> <th>Option</th> <th>Type</th> <th>Description</th> <th>Default</th> </tr> </thead> <tbody> <tr> <td> <code>blockClassName</code> </td> <td>String</td> <td>Sets Block level/parent class name</td> <td>read-smore</td> </tr> <tr> <td><code>moreText</code></td> <td>String</td> <td>Sets "Read more" text</td> <td>Read more</td> </tr> <tr> <td><code>lessText</code></td> <td>String</td> <td>Sets "Read less" text</td> <td>Read less</td> </tr> <tr> <td><code>wordsCount</code></td> <td>Number</td> <td>Sets max word count. Read Smore defaults to by word if nothing is defined</td> <td>70</td> </tr> </tbody> </table> </section> <section class="space-md"> <h3>Inline Read more</h3> <p>By default the Read more text sits below the content block. However, you can make it inlined with the ellipsed text by importing the provided css</p> <div class="code-block is-lg"> <pre class="code-block__pre"><code>@import 'read-more/read-more.css'</code></pre> </div> <br> <p>Then provide the the data-attribute <code class="code-inline">data-read-smore-inline="true"</code></p> <div class="code-block is-lg"> <pre class="code-block__pre">
 <code>&lt;div 
     class="js-read-smore" 
     data-read-smore-words="70" 

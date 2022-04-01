@@ -23,7 +23,7 @@
                 <p class="page-header__text">A vanilla JS Read More plugin / module</p>
 
                 <div class="page-header__pretitle">
-                  <a href="https://github.com/stephenscaff/readmore" target="_blank">Repo</a>
+                  <a href="https://github.com/stephenscaff/read-smore" target="_blank">Repo</a>
                   |
                   <a href="/#examples">Examples</a>
                 </div>
@@ -64,12 +64,17 @@
               <div class="code-block is-lg">
                 <pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
 
+// target all read smore elements
 const readMores = document.querySelectorAll('.js-read-smore')
+
+// init
 ReadSmore(readMores).init()</code></pre>
               </div>
       
                 <section class="space-sm">
-                  <h4>Example markup - by max word count</h4>
+                  <h4>Example by max word count</h4>
+                  <p>To truncate content by max <strong>word</strong> count, use the data attribute <br/><code class="code-inline">data-read-smore-words=""</code> with desired value.
+                  </p>
                   <div class="code-block is-lg">
                     <pre class="code-block__pre"><code>&lt;div 
       class="js-read-smore" 
@@ -83,33 +88,37 @@ ReadSmore(readMores).init()</code></pre>
                 </section>
 
                 <section class="space-sm">
-                  <h4>Example markup - by max character count</h4>
+                  <h4>Example by max character count</h4>
+                  <p>To truncate content by max <strong>character</strong> count, use the data attribute <br/><code class="code-inline">data-read-smore-chars=""</code> with desired value.
                   <div class="code-block is-lg">
-                    <pre class="code-block__pre"><code>&lt;div 
-    class="js-read-smore" 
-    data-read-smore-chars="150" 
-  >
-    &lt;p>Stuf2 q3eafeèf and words and stuff and words.&lt;/p>
-    &lt;p>Words and stuff and words and stuff.&lt;/p>
-    &lt;!-- more HTML content -->
-  &lt;/div></code></pre>
+                    <pre class="code-block__pre">
+<code>&lt;div 
+  class="js-read-smore" 
+  data-read-smore-chars="150" 
+>
+  &lt;p>Stuff and words and stuff and words.&lt;/p>
+  &lt;p>Words and stuff and words and stuff.&lt;/p>
+  &lt;!-- more HTML content -->
+&lt;/div></code></pre>
                   </div>
                 </section>
               
                 <section class="space-sm">
                   <h4>Provide Options</h4>
+                 <p>ReadSmore supports a few options, such as editing the more/less text. See Options table below for more.</p>
                   <div class="code-block is-lg">
-                    <pre class="code-block__pre"><code>import ReadSmore from 'read-smore'
+                    <pre class="code-block__pre">
+<code>import ReadSmore from 'read-smore'
 
-  const readMores = document.querySelectorAll('.js-read-smore')
+const readMores = document.querySelectorAll('.js-read-smore')
 
-  const options = {
-    blockClassName: 'read-more',
-    moreText: 'Custom more text',
-    lessText: 'Custom less text'
-  }
+const options = {
+  blockClassName: 'read-more',
+  moreText: 'Custom more text',
+  lessText: 'Custom less text'
+}
 
-  ReadSmore(readMores, options).init()</code></pre>
+ReadSmore(readMores, options).init()</code></pre>
                   </div>
                 </section>
               </section>

@@ -14,7 +14,7 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 - Read more / Read less text is customizable.
 - Use data attributes to control max words/characters count.
 - Block level class name is customizable.
-- Read More text can be block level or inline viawwww provided css
+- Read More text can be block level or inline via provided (and super minimal) css
 
 [Docs / Demo](https://stephenscaff.github.io/read-smore/)
 
@@ -22,18 +22,23 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 
 `npm i read-smore`
 
-d
 ## Usage
 
 #### Add to your project
 ```
 import ReadSmore from 'read-smore'
 
+// target all read more elements
 const readMores = document.querySelectorAll('.js-read-smore')
+
+// Init
 ReadSmore(readMores).init()
 ```
 
-#### Example markup - by max word count
+#### Example by max word count
+
+To truncate content by max **word** count, use the data attribute `data-read-smore-words=""` with desired value.
+
 ```
 <div 
   class="js-read-smore" 
@@ -45,7 +50,9 @@ ReadSmore(readMores).init()
 </div>
 ```
 
-#### Example markup - by max character count
+#### Example by max character count
+
+To truncate content by max **character** count, use the data attribute `data-read-smore-chars=""` with desired value.
 ```
 <div 
   class="js-read-smore" 
@@ -58,6 +65,8 @@ ReadSmore(readMores).init()
 ```
 
 #### Provide Options
+
+ReadSmore supports a few options, such as editing the more/less text. See Options table below for more.
 ```
 import ReadSmore from 'read-smore'
 
@@ -88,8 +97,9 @@ Need to figure out how to handle ReadMore instances with ajaxed/Fetched in conte
 Thinking the solution is to destroy and rebuild via a click event. Or, at least open all and rebuild on click.
 
 ## Todo
-- Rename everything to 'ReadSmore'
+- ~~Overhaul and simplfiy API to be more plugin / module like~~
+- ~~Rename everything to 'ReadSmore'~~
+- ~~Add docs / demo pages via gh-pages~~
 - Provide callbacks on open/close
 - Provide a destroy method
 - Provide a solution for content injected after page load
-- Add docs / demo pages via gh-pages
