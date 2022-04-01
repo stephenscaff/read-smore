@@ -26,10 +26,14 @@ html, body {
   color: var(--color-dark);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h2, h3 {
   font-size: 1.75em;
   color: var(--color-dark);
-  margin-bottom: 1.25em;
+  margin-bottom: 1em;
 }
 
 h4 {
@@ -55,6 +59,14 @@ a {
   }
 }
 
+ul {
+  padding-left: 1em;
+
+  li {
+    margin-bottom: 0.25em;
+  }
+}
+
 code {
   font-family: var(--font-mono);
 }
@@ -74,26 +86,30 @@ table {
     padding: 1em 1em 1em 0em;
     vertical-align: top;
     border-bottom: 1px solid var(--color-light);
-  }
-  td:nth-of-type(4) {
-    min-width: 6em;
-  }
 
-  td code {
-    font-size: 0.9em;
+    &:nth-of-type(4){
+      min-width: 6em;
+    }
+
+    code {
+      font-size: 0.9em;
+    }
   }
 }
 
+// Page Grid / Container
 .grid {
-  width: 98%;
-  max-width: 38em;
+  margin: 0 auto;
+  width: 95%;
+  max-width: 42em;
 }
 
-.space-sm {
+// Spacings
+.space-xs {
   padding: 1em 0;
 }
 
-.space-md {
+.space-sm {
   padding: 2em 0;
 
   & + & {
@@ -101,23 +117,33 @@ table {
   }
 }
 
+.space-md {
+  padding: 4em 0;
+
+  & + & {
+    padding-top: 0;
+  }
+}
+
+// Dividers
+.sep {
+  display: block;
+  border-top: 1px solid #eee;
+  border-bottom: 0;
+}
+
+// Page Layout
 .page {
   position: relative;
   margin: 0  auto;
-  
-  &__main {
-    padding: 3em 0;
-    margin: 0 auto;
-    width: 95%;
-    max-width: 42em;
-    @media (min-width: $mq-md) {
-      padding: 6em 4em;
-    }
+  padding: 2em 0;
+  @media (min-width: $mq-md) {
+    padding: 4em 0;
   }
 }
 
 .page-header {
-  padding: 1em 0 1em;
+  padding: 1em 0;
 
   &__grid {
     display: flex;
@@ -135,8 +161,6 @@ table {
   &__pretitle {
     display:block;
   }
-
-
   &__title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -145,19 +169,31 @@ table {
   &__text {
     margin-bottom: 0.5em;
   }
-
 }
 
+.page-footer {
+  padding: 3rem 0;
+  border-top: 1px solid #eee;
+  text-align: center;
 
+  &__icon {
+    width: 2em;
+  }
+}
+
+// Code Block
 .code-block {
   background: var(--color-dark);
   color: var(--color-light);
+  margin: 0 -1em;
   padding: 1em;
-  border-radius: 1em;
+  border-radius: 0;
   overflow-x: hidden;
   
   @media (min-width: $mq-md) {
     padding: 2em;
+    border-radius: 0.5rem;
+    margin: 0 auto;
   }
  
   &__pre {
@@ -182,6 +218,7 @@ table {
   font-size: 0.9em;
 }
 
+// Post Blocks (for demos)
 .post {
 
   & + & {
@@ -208,13 +245,24 @@ table {
     letter-spacing: 0.1rem;
     line-height: 1;
   }
+
+  ul + p {
+    margin-top: 1em;
+  }
 }
 
+// Read Smore  styles
 .read-smore {
   
+  :not([data-read-smore-inline="true"]) + &__link-wrap {
+    display: block;
+    margin-top: 1em;
+  }
   &__link {
     font-weight: 700;
   }
+
+  
 }
 
 // Add is-line to wrapper to support a read more inline with the content.

@@ -1,7 +1,8 @@
 
 [data-read-smore-inline="true"],
 [data-read-smore-inline="true"] p, 
-[data-read-smore-inline="true"] + span {
+[data-read-smore-inline="true"] + span,
+[data-read-smore-inline="true"] + .read-smore__link-wrap {
   display: inline;
 }
 
@@ -29,10 +30,13 @@ html, body {
   font-family: var(--font-base);
   color: var(--color-dark);
 }
+html {
+  scroll-behavior: smooth;
+}
 h2, h3 {
   font-size: 1.75em;
   color: var(--color-dark);
-  margin-bottom: 1.25em;
+  margin-bottom: 1em;
 }
 h4 {
   font-size: 1.2em;
@@ -52,6 +56,12 @@ a {
 }
 a:hover {
   color: var(--color-pink-dark);
+}
+ul {
+  padding-left: 1em;
+}
+ul li {
+  margin-bottom: 0.25em;
 }
 code {
   font-family: var(--font-mono);
@@ -78,35 +88,42 @@ table td code {
   font-size: 0.9em;
 }
 .grid {
-  width: 98%;
-  max-width: 38em;
-}
-.space-sm {
-  padding: 1em 0;
-}
-.space-md {
-  padding: 2em 0;
-}
-.space-md + .space-md {
-  padding-top: 0;
-}
-.page {
-  position: relative;
-  margin: 0 auto;
-}
-.page__main {
-  padding: 3em 0;
   margin: 0 auto;
   width: 95%;
   max-width: 42em;
 }
+.space-xs {
+  padding: 1em 0;
+}
+.space-sm {
+  padding: 2em 0;
+}
+.space-sm + .space-sm {
+  padding-top: 0;
+}
+.space-md {
+  padding: 4em 0;
+}
+.space-md + .space-md {
+  padding-top: 0;
+}
+.sep {
+  display: block;
+  border-top: 1px solid #eee;
+  border-bottom: 0;
+}
+.page {
+  position: relative;
+  margin: 0 auto;
+  padding: 2em 0;
+}
 @media (min-width: 32em) {
-  .page__main {
-    padding: 6em 4em;
+  .page {
+    padding: 4em 0;
   }
 }
 .page-header {
-  padding: 1em 0 1em;
+  padding: 1em 0;
 }
 .page-header__grid {
   display: flex;
@@ -128,16 +145,27 @@ table td code {
 .page-header__text {
   margin-bottom: 0.5em;
 }
+.page-footer {
+  padding: 3rem 0;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+.page-footer__icon {
+  width: 2em;
+}
 .code-block {
   background: var(--color-dark);
   color: var(--color-light);
+  margin: 0 -1em;
   padding: 1em;
-  border-radius: 1em;
+  border-radius: 0;
   overflow-x: hidden;
 }
 @media (min-width: 32em) {
   .code-block {
     padding: 2em;
+    border-radius: 0.5rem;
+    margin: 0 auto;
   }
 }
 .code-block__pre {
@@ -181,6 +209,13 @@ table td code {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   line-height: 1;
+}
+.post ul + p {
+  margin-top: 1em;
+}
+:not([data-read-smore-inline=true]) + .read-smore__link-wrap {
+  display: block;
+  margin-top: 1em;
 }
 .read-smore__link {
   font-weight: 700;

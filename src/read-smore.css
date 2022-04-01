@@ -1,7 +1,8 @@
 
 [data-read-smore-inline="true"],
 [data-read-smore-inline="true"] p, 
-[data-read-smore-inline="true"] + span {
+[data-read-smore-inline="true"] + span,
+[data-read-smore-inline="true"] + .read-smore__link-wrap {
   display: inline;
 }
 
