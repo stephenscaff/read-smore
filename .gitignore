@@ -1,5 +1,6 @@
 node_modules
 .cache
+parcel-cache
 npm-debug.log
 .DS_Store
 .cache

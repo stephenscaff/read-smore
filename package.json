@@ -1,7 +1,7 @@
 {
   "name": "read-smore",
   "version": "1.0.0",
-  "description": "A simple read more / read less feature in pure js",
+  "description": "A simple read more / read less feature in vanilla js",
   "author": "Stephen Scaff <stephenscaff.com>",
   "license": "ISC",
   "repository": {
@@ -16,24 +16,42 @@
     "read more",
     "readmore.js",
     "read-more-js",
+    "read smore",
+    "ellipse",
     "truncate",
     "content",
     "more content"
   ],
-  "main": "dist/read-more.js",
-  "umd:main": "dist/read-more.umd.js",
-  "module": "dist/read-more.module.js",
-  "source": "src/package/read-more.js",
+  "main": "dist/read-smore.js",
+  "umd:main": "dist/read-smore.umd.js",
+  "module": "dist/read-smore.module.js",
+  "source": "src/read-smore.js",
+  "exports": "./dist/read-smore.modern.js",
   "files": [
     "dist"
-  ],
+  ],  
+  "targets": {
+    "main": false,
+    "module": false,
+    "browser": false
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "microbundle",
-    "dev": "microbundle watch",
-    "prepublishOnly": "npm run build"
+    "dev": "npm run demo:start && microbundle watch",
+    "prepare": "npm run build",
+    "prepublish": "rm -rf ./dist && npm run build",
+    "demo:start": "parcel ./demo/src/index.html --dist-dir ./demo/dist",
+    "demo:build": "parcel build ./demo/src/index.html --dist-dir ./demo/dist --public-url ./",
+    "demo:deploy": "npm run demo:build && gh-pages -d ./demo/dist",
+    "demo:clean": "rm -rf ./demo/dist",
+    "lint": "eslint ./src/**js --fix "
   },
   "devDependencies": {
-    "microbundle": "^0.11.0"
+    "@parcel/transformer-sass": "^2.3.2",
+    "eslint": "^8.11.0",
+    "gh-pages": "^3.2.3",
+    "microbundle": "^0.14.2",
+    "parcel": "^2.3.2"
   }
 }

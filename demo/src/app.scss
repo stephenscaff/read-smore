@@ -1,0 +1,268 @@
+@import '../../src/read-smore.css';
+
+$mq-md: 32em;
+
+:root {
+  --font-base: 'Work Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monaco, monospace;
+  --color-dark: #2d130d;
+  --color-light: #e7d0b2;
+  --color-pink-light: #ffeaf2;
+  --color-pink-mid: #d0828f;
+  --color-pink-dark: #8a0060;
+  --mq-md: 32em;
+}
+
+*, body, html {
+  margin: 0;
+  padding:0;
+  line-height: 1.5;
+}
+
+ 
+html, body {
+  background-color: #fff;
+  font-family: var(--font-base);
+  color: var(--color-dark);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h2, h3 {
+  font-size: 1.75em;
+  color: var(--color-dark);
+  margin-bottom: 1em;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: var(--color-dark);
+  margin-bottom: 1em;
+}
+
+p {
+  font-size: 1.1em;
+  margin-bottom: 1.2em;
+  color: #3e3f42;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-pink-mid);
+  text-decoration:none;
+  transition: color 0.4s ease;
+
+  &:hover {
+    color: var(--color-pink-dark);
+  }
+}
+
+ul {
+  padding-left: 1em;
+
+  li {
+    margin-bottom: 0.25em;
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+table {
+  padding: 1em 0;
+
+  th {
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid;
+  }
+
+  td {
+    padding: 1em;
+    text-align: left;
+    padding: 1em 1em 1em 0em;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-light);
+
+    &:nth-of-type(4){
+      min-width: 6em;
+    }
+
+    code {
+      font-size: 0.9em;
+    }
+  }
+}
+
+// Page Grid / Container
+.grid {
+  margin: 0 auto;
+  width: 95%;
+  max-width: 42em;
+}
+
+// Spacings
+.space-xs {
+  padding: 1em 0;
+}
+
+.space-sm {
+  padding: 2em 0;
+
+  & + & {
+    padding-top: 0;
+  }
+}
+
+.space-md {
+  padding: 4em 0;
+
+  & + & {
+    padding-top: 0;
+  }
+}
+
+// Dividers
+.sep {
+  display: block;
+  border-top: 1px solid #eee;
+  border-bottom: 0;
+}
+
+// Page Layout
+.page {
+  position: relative;
+  margin: 0  auto;
+  padding: 2em 0;
+  @media (min-width: $mq-md) {
+    padding: 4em 0;
+  }
+}
+
+.page-header {
+  padding: 1em 0;
+
+  &__grid {
+    display: flex;
+    align-items: center;
+  }
+
+  &__img {
+    max-width: 8em;
+  }
+
+  &__heading {
+    padding-left: 2em;
+  }
+
+  &__pretitle {
+    display:block;
+  }
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    margin-bottom: 0.5em;
+  }
+}
+
+.page-footer {
+  padding: 3rem 0;
+  border-top: 1px solid #eee;
+  text-align: center;
+
+  &__icon {
+    width: 2em;
+  }
+}
+
+// Code Block
+.code-block {
+  background: var(--color-dark);
+  color: var(--color-light);
+  margin: 0 -1em;
+  padding: 1em;
+  border-radius: 0;
+  overflow-x: hidden;
+  
+  @media (min-width: $mq-md) {
+    padding: 2em;
+    border-radius: 0.5rem;
+    margin: 0 auto;
+  }
+ 
+  &__pre {
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+  }
+
+  &.is-lg {
+    padding: 2em 1em;
+    @media (min-width: $mq-md) {
+      padding: 2em;
+    }
+  }
+}
+
+.code-inline {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border-radius: 5px;
+  padding: 0.25em 0.5rem;
+  font-size: 0.9em;
+}
+
+// Post Blocks (for demos)
+.post {
+
+  & + & {
+    padding-top: 3em;
+    margin-top: 3em;
+    border-top: 1px solid #ddd;
+  }
+
+  &__title {
+    font-size: 1.35em;
+    margin-bottom: 0.5em;
+  }
+
+  &__meta {
+    display: inline-flex;
+    padding: 6px 8px;
+    margin: 0 0 1rem;
+    background: var(--color-pink-light);
+    color: var(--color-pink-dark);
+    border-radius: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+  }
+
+  ul + p {
+    margin-top: 1em;
+  }
+}
+
+// Read Smore  styles
+.read-smore {
+  
+  :not([data-read-smore-inline="true"]) + &__link-wrap {
+    display: block;
+    margin-top: 1em;
+  }
+  &__link {
+    font-weight: 700;
+  }
+
+  
+}
+
+// Add is-line to wrapper to support a read more inline with the content.

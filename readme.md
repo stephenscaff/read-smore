@@ -2,88 +2,84 @@
 
 (cause read-more was already taken 😉)
 
-A little js component / thing for adding a read more / read less feature with pure js.
+A customizable, lightweight vanilla JS plugin for truncating content with a Read more / Read less move, whilst preserving the original markup. Able to truncate by max word or character count.
 
-Highlights:
 
-- Specify word count that's displayed before truncation
-- Adds ellipse after truncated content
-- Support for multiple instances per page, each with it's own word count
-- Preserves existing markup (nice bruv)
-- Change Read More / Read Less text via settings object
+## Highlights:
+
 - Super duper lightweight, no dependencies, vanilla js.
-- Read More can me inline with content via css (provided... no biggie)
+- Supports truncating content by max Word or Character count.
+- Adds ellipse after truncated content.
+- Preserves existing markup (nice).
+- Read more / Read less text is customizable.
+- Use data attributes to control max words/characters count.
+- Block level class name is customizable.
+- Read More text can be block level or inline viawwww provided css
 
-[Blog Post](http://stephenscaff.com/articles/2018/12/readmore-js/)
-[Demo](https://codepen.io/StephenScaff/full/oPbbMx)
+[Docs / Demo](https://stephenscaff.github.io/read-smore)
 
 ## Install (via npm)
 
 `npm i read-smore`
 
-
+d
 ## Usage
 
-ReadMore just looks for the class `js-read-more`.
+#### Add to your project
+```
+import ReadSmore from 'read-smore'
 
-Specify the desired words before truncation with the data attribute `data-rm-words`.
-
-A few baseline styles are provided.
-
-###
-
-
-#### MarkUp
+const readMores = document.querySelectorAll('.js-read-smore')
+ReadSmore(readMores).init()
 ```
 
+#### Example markup - by max word count
+```
+<div 
+  class="js-read-smore" 
+  data-read-smore-words="70" 
+>
+  <p>Stuff and words and stuff and words.</p>
+  <p>Words and stuff and words and stuff.</p>
+  <!-- more HTML content -->
+</div>
+```
+
+#### Example markup - by max character count
+```
+<div 
+  class="js-read-smore" 
+  data-read-smore-chars="150" 
+>
+  <p>Stuff and words and stuff and words.</p>
+  <p>Words and stuff and words and stuff.</p>
+  <!-- more HTML content -->
+</div>
+```
+
+#### Provide Options
+```
+import ReadSmore from 'read-smore'
+
+const readMores = document.querySelectorAll('.js-read-smore')
+
+const options = {
+  blockClassName: 'read-more',
+  moreText: 'Custom more text',
+  lessText: 'Custom less text'
+}
+
+ReadSmore(readMores, options).init()
+```
+
+### MarkUp
+```
 <article>
-  <div class="read-more js-read-more" data-rm-words="60">
+  <div class="read-more js-read-more" data-read-smore-count="60">
     <p><!-- some content call here --></p>
   </div>
 </article>
 ```
-
-### Import and init from npm
-```
-import ReadMore from 'read-smore'
-
-ReadMore.init()
-```
-
-### Import and init from your files
-```
-import ReadMore from './read-more'
-
-ReadMore.init()
-```
-
-### Init ES5 approach
-
-Include styles and `src/lib/read-more.es5.js` in your project and:
-
-```
-// Maybe check for element first
-if (document.querySelector('.js-read-more')) {
-  ReadMore.init();
-}
-```
-
-### Customize
-
-By overwriting the settings object read-smore can be customized:
-
-```
-ReadMore.settings = function(){
-    return {
-        content: document.querySelectorAll('.js-read-more'), 
-        originalContentArr: [],
-        truncatedContentArr: [],
-        moreLink: "Read More",
-        lessLink: "Less Link",
-    }
-};
-```
-
 
 ## Caveats
 
@@ -91,14 +87,9 @@ Need to figure out how to handle ReadMore instances with ajaxed/Fetched in conte
 
 Thinking the solution is to destroy and rebuild via a click event. Or, at least open all and rebuild on click.
 
-
-## Packing
-
-`src/lib` includes ES5 and ES6 versions, in addition to baseline styles as scss are included.
-`src/package` includes es6 and css that's packaged up with [`microbundle`]() for `npm` distribution.
-
-
 ## Todo
 - Rename everything to 'ReadSmore'
-- Provide a solution for injected content
-- Add demo to gh-pages
+- Provide callbacks on open/close
+- Provide a destroy method
+- Provide a solution for content injected after page load
+- Add docs / demo pages via gh-pages
