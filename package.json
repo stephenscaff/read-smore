@@ -1,6 +1,6 @@
 {
   "name": "read-smore",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A simple read more / read less feature in vanilla js",
   "author": "Stephen Scaff <stephenscaff.com>",
   "license": "ISC",
@@ -29,7 +29,7 @@
   "exports": "./dist/read-smore.modern.js",
   "files": [
     "dist"
-  ],  
+  ],
   "targets": {
     "main": false,
     "module": false,
