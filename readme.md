@@ -16,7 +16,7 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 - Block level class name is customizable.
 - Read More text can be block level or inline viawwww provided css
 
-[Docs / Demo](https://stephenscaff.github.io/read-smore)
+[Docs / Demo](https://stephenscaff.github.io/read-smore/)
 
 ## Install (via npm)
 
