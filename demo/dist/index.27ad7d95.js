@@ -561,13 +561,13 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _readSmoreJs = require("./read-smore.js");
 var _readSmoreJsDefault = parcelHelpers.interopDefault(_readSmoreJs);
+var _readSmoreCss = require("./read-smore.css");
 exports.default = _readSmoreJsDefault.default;
 
-},{"./read-smore.js":"7XPz6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7XPz6":[function(require,module,exports) {
+},{"./read-smore.js":"7XPz6","./read-smore.css":"ayeL7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7XPz6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utils = require("./utils");
-var _readSmoreCss = require("./read-smore.css");
 'use strict';
 /**
  * Defaults
@@ -676,7 +676,7 @@ var _readSmoreCss = require("./read-smore.css");
 ReadSmore.options = defaultOptions;
 exports.default = ReadSmore;
 
-},{"./utils":"jxTvD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./read-smore.css":"ayeL7"}],"jxTvD":[function(require,module,exports) {
+},{"./utils":"jxTvD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxTvD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
