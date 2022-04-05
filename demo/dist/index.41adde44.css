@@ -32,6 +32,7 @@ html, body {
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 h2, h3 {
   font-size: 1.75em;
@@ -66,6 +67,17 @@ ul li {
 code {
   font-family: var(--font-mono);
 }
+.table-block {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 32em) {
+  .table-block {
+    margin: 0 -1.8em;
+    padding-left: 1.8em;
+    padding-right: 1.8em;
+  }
+}
 table {
   padding: 1em 0;
 }
@@ -81,6 +93,9 @@ table td {
   vertical-align: top;
   border-bottom: 1px solid var(--color-light);
 }
+table td:nth-of-type(3) {
+  min-width: 12em;
+}
 table td:nth-of-type(4) {
   min-width: 6em;
 }
@@ -89,7 +104,7 @@ table td code {
 }
 .grid {
   margin: 0 auto;
-  width: 95%;
+  width: 92%;
   max-width: 42em;
 }
 .space-xs {
@@ -157,7 +172,7 @@ table td code {
 .code-block {
   background: var(--color-dark);
   color: var(--color-light);
-  margin: 0 -1em;
+  margin: 0 -1.8em;
   padding: 1em;
   border-radius: 0;
   overflow-x: hidden;
@@ -175,12 +190,7 @@ table td code {
   white-space: pre-wrap;
 }
 .code-block.is-lg {
-  padding: 2em 1em;
-}
-@media (min-width: 32em) {
-  .code-block.is-lg {
-    padding: 2em;
-  }
+  padding: 2em;
 }
 .code-inline {
   background: var(--color-light);

@@ -1,6 +1,7 @@
-import { getWordCount, getCharCount, trimSpaces } from './utils';
+import { getWordCount, getCharCount, trimSpaces } from "./utils";
+import './read-smore.css'
 
-('use strict');
+'use strict';
 
 /**
  * Defaults

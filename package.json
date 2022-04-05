@@ -1,9 +1,9 @@
 {
   "name": "read-smore",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A simple read more / read less feature in vanilla js",
   "author": "Stephen Scaff <stephenscaff.com>",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/stephenscaff/read-smore"
@@ -27,7 +27,10 @@
   "umd:main": "dist/read-smore.umd.js",
   "module": "dist/read-smore.module.js",
   "source": "src/read-smore.js",
-  "exports": "./dist/read-smore.modern.js",
+  "exports": {
+    "require": "./dist/read-smore.js",
+    "default": "./dist/read-smore.modern.js"
+  },
   "files": [
     "dist"
   ],

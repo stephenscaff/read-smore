@@ -28,6 +28,7 @@ html, body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x:hidden;
 }
 
 h2, h3 {
@@ -71,6 +72,17 @@ code {
   font-family: var(--font-mono);
 }
 
+.table-block {
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: $mq-md) {
+    margin: 0 -1.8em;
+    padding-left: 1.8em;
+    padding-right: 1.8em;
+  }
+}
+
 table {
   padding: 1em 0;
 
@@ -87,6 +99,10 @@ table {
     vertical-align: top;
     border-bottom: 1px solid var(--color-light);
 
+    &:nth-of-type(3){
+      min-width: 12em;
+    }
+
     &:nth-of-type(4){
       min-width: 6em;
     }
@@ -100,7 +116,7 @@ table {
 // Page Grid / Container
 .grid {
   margin: 0 auto;
-  width: 95%;
+  width: 92%;
   max-width: 42em;
 }
 
@@ -186,7 +202,7 @@ table {
 .code-block {
   background: var(--color-dark);
   color: var(--color-light);
-  margin: 0 -1em;
+  margin: 0 -1.8em;
   padding: 1em;
   border-radius: 0;
   overflow-x: hidden;
@@ -204,10 +220,7 @@ table {
   }
 
   &.is-lg {
-    padding: 2em 1em;
-    @media (min-width: $mq-md) {
-      padding: 2em;
-    }
+    padding: 2em;
   }
 }
 
