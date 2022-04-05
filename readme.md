@@ -15,6 +15,7 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 - Use data attributes to control max words/characters count.
 - Block level class name is customizable.
 - Read More text can be block level or inline via provided (and super minimal) css
+- Hybrid NPM Module, supporting `import` and `require`
 
 [Docs / Demo](https://stephenscaff.github.io/read-smore/)
 
@@ -33,6 +34,14 @@ const readMores = document.querySelectorAll('.js-read-smore')
 
 // Init
 ReadSmore(readMores).init()
+```
+
+**Or, by require**
+
+```
+const ReadSmore = require("read-smore");
+const readMores = document.querySelectorAll(".js-read-smore");
+ReadSmore(readMores).init();
 ```
 
 #### Example by max word count
@@ -100,6 +109,8 @@ Thinking the solution is to destroy and rebuild via a click event. Or, at least 
 - ~~Overhaul and simplfiy API to be more plugin / module like~~
 - ~~Rename everything to 'ReadSmore'~~
 - ~~Add docs / demo pages via gh-pages~~
+- ~~Bundle as Hybrid NPM Module to support `import` and `require`~~
 - Provide callbacks on open/close
 - Provide a destroy method
 - Provide a solution for content injected after page load
+- Add some tests

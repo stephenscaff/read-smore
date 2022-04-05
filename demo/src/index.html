@@ -54,6 +54,7 @@
                 <li>Use data attributes to control max words/characters count</li>
                 <li>Block level class name is customizable</li>
                 <li>Read More text can be block level or inline via provided css</li>
+                <li>Hybrid NPM Module supporting <code class="code-inline">import</code> and <code class="code-inline">require</li>
               </ul>
             </section>
 
@@ -72,6 +73,13 @@
 const readMores = document.querySelectorAll('.js-read-smore')
 
 // init
+ReadSmore(readMores).init()</code></pre>
+              </div>
+              <br/>
+              <h4>Or by require</h4>
+              <div class="code-block is-lg">
+                <pre class="code-block__pre"><code>const ReadSmore = require('read-smore')
+const readMores = document.querySelectorAll('.js-read-smore')
 ReadSmore(readMores).init()</code></pre>
               </div>
       
@@ -204,7 +212,7 @@ ReadSmore(readMores, options).init()</code></pre>
                   class="post__content js-read-smore" 
                   data-read-smore-words="30" 
                 >
-                  <p>Wee choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
+                  <p>We choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard.</p> 
               
                   <p>Because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.</p>
             
