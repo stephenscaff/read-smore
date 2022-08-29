@@ -26,6 +26,7 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 ## Usage
 
 #### Add to your project
+
 ```
 import ReadSmore from 'read-smore'
 
@@ -43,6 +44,27 @@ const ReadSmore = require("read-smore");
 const readMores = document.querySelectorAll(".js-read-smore");
 ReadSmore(readMores).init();
 ```
+
+#### Via CDN
+
+To include via CDN, find the latest UMD version at [https://unpkg.com/read-smore](https://unpkg.com/read-smore) and inlcude via script tag, like so:
+
+```
+<script src="https://unpkg.com/read-smore@2.0.4/dist/index.umd.js"></script>
+```
+
+**Then, initialize**
+
+```
+const ReadSmore = window.readSmore
+
+// target all read more elements
+const readMoreEls = document.querySelectorAll('.js-read-smore')
+
+// Init
+ReadSmore(readMoreEls).init()
+```
+
 
 #### Example by max word count
 
