@@ -1,19 +1,17 @@
-import { getWordCount, getCharCount, trimSpaces } from "./utils";
-
-
-'use strict';
+import { getWordCount, getCharCount, trimSpaces } from './utils'
+;('use strict')
 
 /**
  * Defaults
  */
 const defaultOptions = {
   blockClassName: 'read-smore',
-  wordsCount: 70,
-  charsCount: 150,
+  wordsCount: 1,
+  charsCount: null,
   moreText: 'Read More',
   lessText: 'Read Less',
-  isInline: false,
-};
+  isInline: false
+}
 
 /**
  * ReadSmore
@@ -22,13 +20,13 @@ const defaultOptions = {
  * @returns
  */
 function ReadSmore(element, options) {
-  options = Object.assign({}, defaultOptions, options);
+  options = Object.assign({}, defaultOptions, options)
 
   // Internal Settings
   let settings = {
     originalContentArr: [],
-    truncatedContentArr: [],
-  };
+    truncatedContentArr: []
+  }
 
   /**
    * Init plugin
@@ -37,7 +35,31 @@ function ReadSmore(element, options) {
    */
   function init() {
     for (let i = 0, n = element.length; i < n; ++i) {
-      truncate(element[i], i);
+      truncate(element[i], i)
+    }
+  }
+
+  /**
+   * Get Count of characters or words.
+   * Favors Characters from data att, then option, then words.
+   * @param {HTML Elmenent} el - single element instance
+   * @returns {Number}
+   */
+  function getCount(el) {
+    if (el.dataset.readSmoreChars) {
+      return el.dataset.readSmoreChars
+    }
+
+    if (options.charsCount) {
+      return options.charsCount
+    }
+
+    if (el.dataset.readSmoreWords) {
+      return el.dataset.readSmoreWords
+    }
+
+    if (options.wordsCount) {
+      return options.wordsCount
     }
   }
 
@@ -50,43 +72,41 @@ function ReadSmore(element, options) {
    */
   function ellipse(str, max, isChars = false) {
     // Trim starting/ending empty spaces
-    const trimedSpaces = trimSpaces(str);
+    const trimedSpaces = trimSpaces(str)
 
     if (isChars) {
-      return trimedSpaces.split('').slice(0, max).join('') + '...';
+      return trimedSpaces.split('').slice(0, max).join('') + '...'
     }
 
-    return trimedSpaces.split(/\s+/).slice(0, max).join(' ') + '...';
+    return trimedSpaces.split(/\s+/).slice(0, max).join(' ') + '...'
   }
 
   /**
-   * Truncate Logic
+   * Truncate we
    * @param {HTML Elmenent} el - single element instance
    * @param {Number} i - current instance index
    */
   function truncate(el, idx) {
-    // User defined word count or defaults
-    const numberWords = el.dataset.readSmoreWords || options.wordsCount;
-    // User defined chars (if exists) or word count
-    const numberCount = el.dataset.readSmoreChars || numberWords;
-    const originalContent = el.innerHTML;
-    // Ellipser: content, count, is chars bool
+    const totalCount = getCount(el)
+
+    console.log(totalCount)
+    const originalContent = el.innerHTML
     const truncateContent = ellipse(
       originalContent,
-      numberCount,
+      totalCount,
       el.dataset.readSmoreChars ? true : false
-    );
-    const originalContentCount = el.dataset.readSmoreWords
+    )
+    const originalConctentCount = el.dataset.readSmoreWords
       ? getWordCount(originalContent)
-      : getCharCount(originalContent);
+      : getCharCount(originalContent)
 
-    settings.originalContentArr.push(originalContent);
-    settings.truncatedContentArr.push(truncateContent);
+    settings.originalContentArr.push(originalContent)
+    settings.truncatedContentArr.push(truncateContent)
 
-    if (numberCount < originalContentCount) {
-      el.innerHTML = settings.truncatedContentArr[idx];
-      let self = idx;
-      createLink(self);
+    if (totalCount < originalConctentCount) {
+      el.innerHTML = settings.truncatedContentArr[idx]
+      let self = idx
+      createLink(self)
     }
   }
 
@@ -96,21 +116,19 @@ function ReadSmore(element, options) {
    * @param {number} idx - index reference of looped item
    */
   function createLink(idx) {
-    const linkWrap = document.createElement('span');
-
-    linkWrap.className = `${options.blockClassName}__link-wrap`;
-
+    const linkWrap = document.createElement('span')
+    linkWrap.className = `${options.blockClassName}__link-wrap`
     linkWrap.innerHTML = `<a id=${options.blockClassName}_${idx}
                              class=${options.blockClassName}__link
                              style="cursor:pointer;">
                              ${options.moreText}
-                          </a>`;
+                          </a>`
 
     // Inset created link
-    element[idx].after(linkWrap);
+    element[idx].after(linkWrap)
 
     // Call link click handler
-    handleLinkClick(idx);
+    handleLinkClick(idx)
   }
 
   /**
@@ -118,29 +136,29 @@ function ReadSmore(element, options) {
    * @param {number} index - index of clicked link
    */
   function handleLinkClick(idx) {
-    const link = document.querySelector(`#${options.blockClassName}_${idx}`);
+    const link = document.querySelector(`#${options.blockClassName}_${idx}`)
 
     link.addEventListener('click', (e) => {
-      element[idx].classList.toggle('is-expanded');
-      const target = e.currentTarget;
+      element[idx].classList.toggle('is-expanded')
+      const target = e.currentTarget
       if (target.dataset.clicked !== 'true') {
-        element[idx].innerHTML = settings.originalContentArr[idx];
-        target.innerHTML = options.lessText;
-        target.dataset.clicked = true;
+        element[idx].innerHTML = settings.originalContentArr[idx]
+        target.innerHTML = options.lessText
+        target.dataset.clicked = true
       } else {
-        element[idx].innerHTML = settings.truncatedContentArr[idx];
-        target.innerHTML = options.moreText;
-        target.dataset.clicked = false;
+        element[idx].innerHTML = settings.truncatedContentArr[idx]
+        target.innerHTML = options.moreText
+        target.dataset.clicked = false
       }
-    });
+    })
   }
 
   // API
   return {
-    init: init,
-  };
+    init: init
+  }
 }
 
-ReadSmore.options = defaultOptions;
+ReadSmore.options = defaultOptions
 
-export default ReadSmore;
+export default ReadSmore

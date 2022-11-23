@@ -1,40 +1,29 @@
-'use strict';
+'use strict'
 
 /**
- * Count Words
- * Helper to handle word count.
- * @param {string} str - Target content string.
- */
-export function countWords(str) {
-  return str.split(/\s+/).length;
-}
-
-/**
- * Count Chars
- * Helper to count by character
- * @param {string} str - Target content string.
+ * Get Character Count
+ * @param {string
+ * @param {number}
  */
 export function getCharCount(str) {
-  return str.length;
+  return str.length
 }
 
+/**
+ * Get Word Count
+ * @param {string}
+ * @param {number}
+ */
 export function getWordCount(str) {
-  return str.length;
+  const words = str.split('  ')
+  return words.filter((word) => word !== '').length
 }
 
-export function noTags(str) {
-  return str.replace(/(<([^>]+)>)/gi, '');
-}
-
-export function noSpacing(str) {
-  return str.replace(/\s/g, '');
-}
-
+/**
+ * Trim whitespace
+ * @param {string}
+ * @param {string}
+ */
 export function trimSpaces(str) {
-  return str.replace(/(^\s*)|(\s*$)/gi, '');
-}
-
-export function getTagsCount(str) {
-  const tags = /(<([^>]+)>)/gi;
-  return ((str || '').match(tags) || []).length;
+  return str.replace(/(^\s*)|(\s*$)/gi, '')
 }
