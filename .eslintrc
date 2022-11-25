@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "globals": {
+    "console": true,
+    "Player": true,
+    "document": true,
+    "module": true,
+    "navigator": true,
+    "Promise": true,
+    "requestAnimationFrame": true,
+    "setTimeout": true,
+    "window": true,
+    "IntersectionObserver": true,
+    "DocumentTouch": true,
+    "CustomEvent": true,
+    "location": true,
+    "Element": true
+  },
+  "rules": {
+    "no-unused-vars": "warn"
+  }
+}
