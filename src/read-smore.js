@@ -40,6 +40,13 @@ function ReadSmore(element, options) {
     }
   }
 
+  /**
+   * Is Characters
+   * Utility to check if is chars mode
+   *
+   * @private
+   * @param {HTML Elmenent} el - single element instance
+   */
   function isChars(el) {
     if (
       el.dataset.readSmoreChars !== undefined ||
