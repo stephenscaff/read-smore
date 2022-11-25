@@ -100,13 +100,14 @@ ReadSmore(readMoreEls).init()
 
 `ReadSmore()` accepts a single options param, which supports the following properties:
 
-| Option | Type | Description | Default |  
-| blockClassName | String | BEM style block name for injected link template | `read-smore` |  
-| lessText | String | 'Read Less' closer link text | `Read more` |
-| moreText | String | 'Read More' expander link text | `Read less` |
-| wordsCount: 30, | Number | Default max words (if no data attribute) | `30` |
-| charsCount: null | Number | Default max characters (if no data attribute) | `null` |
-| isInline | Boolean | Styles link text inline with content | `false` |
+| Option           | Type    | Description                                     | Default      |
+| ---------------- | ------- | ----------------------------------------------- | ------------ |
+| blockClassName   | String  | BEM style block name for injected link template | `read-smore` |
+| lessText         | String  | 'Read Less' closer link text                    | `Read more`  |
+| moreText         | String  | 'Read More' expander link text                  | `Read less`  |
+| wordsCount: 30,  | Number  | Default max words (if no data attribute)        | `30`         |
+| charsCount: null | Number  | Default max characters (if no data attribute)   | `null`       |
+| isInline         | Boolean | Styles link text inline with content            | `false`      |
 
 <br>
 
