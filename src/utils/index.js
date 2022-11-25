@@ -28,6 +28,11 @@ export function trimSpaces(str) {
   return str.replace(/(^\s*)|(\s*$)/gi, '')
 }
 
+/**
+ * Remove HTML Tags from string
+ * @param {string}
+ * @param {string}
+ */
 export function removeTags(str) {
   if (str === null || str === '') {
     return false
