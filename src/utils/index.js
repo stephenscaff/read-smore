@@ -15,8 +15,8 @@ export function getCharCount(str) {
  * @param {number}
  */
 export function getWordCount(str) {
-  const words = str.split('  ')
-  return words.filter((word) => word !== '').length
+  const words = removeTags(str).split(' ')
+  return words.filter((word) => word.trim() !== '').length
 }
 
 /**
@@ -26,4 +26,12 @@ export function getWordCount(str) {
  */
 export function trimSpaces(str) {
   return str.replace(/(^\s*)|(\s*$)/gi, '')
+}
+
+export function removeTags(str) {
+  if (str === null || str === '') {
+    return false
+  }
+
+  return str.replace(/<[^>]+>/g, '')
 }
