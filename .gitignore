@@ -7,3 +7,4 @@ npm-debug.log
 .tmp
 *.log
 dist
+demo/dist
