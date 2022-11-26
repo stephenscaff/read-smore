@@ -5,6 +5,7 @@ $mq-md: 32em;
 :root {
   --font-base: 'Work Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monaco, monospace;
+  --font-size-code: 0.85em;
   --color-dark: #2d130d;
   --color-light: #e7d0b2;
   --color-pink-light: #ffeaf2;
@@ -32,9 +33,12 @@ html {
 }
 
 h2, h3 {
-  font-size: 1.75em;
+  font-size: 1.35em;
   color: var(--color-dark);
   margin-bottom: 1em;
+  @media (min-width: $mq-md) {
+    font-size: 1.5em;
+  }
 }
 
 h4 {
@@ -70,8 +74,44 @@ ul {
 
 code {
   font-family: var(--font-mono);
+  font-size: var(--font-size-code);
 }
 
+.code-inline {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border-radius: 5px;
+  padding: 0.25em 0.5rem;
+  font-size: calc(var(--font-size-code) - 0.1em);
+}
+
+// Code Block
+.code-block {
+  background: var(--color-dark);
+  color: var(--color-light);
+  margin: 0 -1.8em;
+  padding: 1em 1.8em;
+  border-radius: 0;
+  overflow-x: hidden;
+  
+  @media (min-width: $mq-md) {
+    padding: 2em;
+    border-radius: 0.5rem;
+    margin: 0 auto;
+  }
+ 
+  &__pre {
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+  }
+
+  &.is-lg {
+    padding: 2em;
+  }
+}
+
+// Table Blocks
 .table-block {
   overflow-x:auto;
   -webkit-overflow-scrolling: touch;
@@ -83,6 +123,7 @@ code {
   }
 }
 
+// Tables
 table {
   padding: 1em 0;
 
@@ -105,10 +146,6 @@ table {
 
     &:nth-of-type(4){
       min-width: 6em;
-    }
-
-    code {
-      font-size: 0.9em;
     }
   }
 }
@@ -158,20 +195,28 @@ table {
   }
 }
 
+// Page Header
 .page-header {
   padding: 1em 0;
 
   &__grid {
-    display: flex;
-    align-items: center;
+    @media (min-width: $mq-md) {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__img {
-    max-width: 8em;
+    max-width: 5em;
+    @media (min-width: $mq-md) {
+      max-width: 8em;
+    }
   }
 
   &__heading {
-    padding-left: 2em;
+    @media (min-width: $mq-md) {
+      padding-left: 2em;
+    }
   }
 
   &__pretitle {
@@ -187,6 +232,7 @@ table {
   }
 }
 
+// Page Footer
 .page-footer {
   padding: 3rem 0;
   border-top: 1px solid #eee;
@@ -198,43 +244,8 @@ table {
   }
 }
 
-// Code Block
-.code-block {
-  background: var(--color-dark);
-  color: var(--color-light);
-  margin: 0 -1.8em;
-  padding: 1em;
-  border-radius: 0;
-  overflow-x: hidden;
-  
-  @media (min-width: $mq-md) {
-    padding: 2em;
-    border-radius: 0.5rem;
-    margin: 0 auto;
-  }
- 
-  &__pre {
-    overflow-x: auto;
-    font-family: var(--font-mono);
-    white-space: pre-wrap;
-  }
-
-  &.is-lg {
-    padding: 2em;
-  }
-}
-
-.code-inline {
-  background: var(--color-light);
-  color: var(--color-dark);
-  border-radius: 5px;
-  padding: 0.25em 0.5rem;
-  font-size: 0.9em;
-}
-
 // Post Blocks (for demos)
 .post {
-
   & + & {
     padding-top: 3em;
     margin-top: 3em;
@@ -267,7 +278,6 @@ table {
 
 // Read Smore  styles
 .read-smore {
-  
   :not([data-read-smore-inline="true"]) + &__link-wrap {
     display: block;
     margin-top: 1em;
@@ -275,8 +285,4 @@ table {
   &__link {
     font-weight: 700;
   }
-
-  
 }
-
-// Add is-line to wrapper to support a read more inline with the content.
