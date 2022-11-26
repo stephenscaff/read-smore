@@ -15,22 +15,21 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 3. [🧬 Options](#-options)
 4. [🤖 Commands](#-commands)
 5. [🕹️ Usage](#-usage)
-6. [🎨 Cursor Types](#-cursor-types)
-7. [📓 Notes](#-notes)
-8. [📅 To Dos](#-to-dos)
+6. [📓 Notes](#-notes)
+7. [📅 To Dos](#-to-dos)
 
 <br/>
 
 ## 📌 Features
 
-- Super duper lightweight, no dependencies, vanilla js.
-- Supports truncating content by max Word or Character count.
+- Super lightweight, no dependencies, just vanilla js.
+- Supports truncating content by max word or character count.
+- Use data attributes to control max words/characters count, or via options.
 - Adds ellipse after truncated content.
 - Preserves existing markup (nice).
 - Read more / Read less text is customizable.
-- Use data attributes to control max words/characters count.
 - Block level class name is customizable.
-- Read More text can be block level or inline via provided (and super minimal) css
+- Read More text can be block or inline via provided (and super minimal) css
 - Hybrid NPM Module, supporting `import` and `require`
 
 <br>
