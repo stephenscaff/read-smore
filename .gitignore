@@ -1,9 +1,9 @@
-node_modules
-.cache
+# System-level
+.DS_Store
+
+# App stuff
+.sass-cache
 .parcel-cache
 npm-debug.log
-.DS_Store
-.cache
-.tmp
-*.log
+node_modules
 dist

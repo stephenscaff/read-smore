@@ -37,8 +37,7 @@
     "clean": "rm -rf dist",
     "build": "microbundle",
     "dev": "npm run demo:start && microbundle watch",
-    "prepublish": "npm run clean && npm run build && npm run demo:build && gh-pages -d ./demo/dist",
-    "demo:start": "parcel ./demo/src/index.html --dist-dir ./demo/dist",
+    "demo:start": "parcel ./demo/src/*.html --dist-dir ./demo/dist",
     "demo:build": "parcel build ./demo/src/index.html --dist-dir ./demo/dist --public-url ./",
     "demo:deploy": "npm run demo:build && gh-pages -d ./demo/dist",
     "demo:clean": "rm -rf ./demo/dist",
@@ -49,6 +48,6 @@
     "eslint": "^8.11.0",
     "gh-pages": "^3.2.3",
     "microbundle": "^0.14.2",
-    "parcel": "^2.3.2"
+    "parcel": "^2.8.0"
   }
 }
