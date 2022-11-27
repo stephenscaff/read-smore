@@ -1,11 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Stephen Scaff">
     <title>ReadSmore.js</title>
     <meta
       name="viewport"
       content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no"
+    >
+    <meta
+      name="description"
+      content="ReadSmore.js is a dependency free, lightweight, vanilla JS library by Stephen Scaff that truncates content with a Read more / Read less link. "
     >
     <script 
     type="module" 
@@ -45,22 +52,48 @@
                 <div class="page-header__pretitle">
                   <a href="https://github.com/stephenscaff/read-smore" target="_blank">Repo</a>
                   |
-                  <a href="/#examples">Examples</a>
+                  <a href="https://stephenscaff.github.io/read-smore/#examples">Examples</a>
                 </div>
               </div>
             </header>
 
-            <section id="about" class="space-md">
-              <h3>About</h3>
-              <div class="js-read-smore is-chars-140" 
-                data-read-smore-chars="140">
-               <p>A customizable, lightweight vanilla JS plugin for truncating content with a Read more / Read less move, whilst preserving the original markup. Able to truncate by max word or character count, that's defined by data attribute or options.</p>
+            <section class="space-md">
+              <header class="section-header">
+                <h2 
+                  id="about" 
+                  class="section-header__title">About</h2>
+                <a class="section-header__link" href="#about">
+                  <span class="section-header__icon" aria-hidden="true">
+                    <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                    </svg>
+                  </span>
+                  <span class="sr-only">Section titled Contents</span>
+                </a>
+              </header>
+              <div class="js-read-smore" 
+                data-read-smore-chars="430">
+               <p>ReadSmore.js is a customizable, lightweight and dependency-free JS library for truncating content with a Read more / Read less link, whilst preserving original markup. The plugin supports truncation by max word or character count, defined via data attribute or options.</p>
+               <p>Read Smore is authored by <a href="https://stephenscaff.com">Stephen Scaff</a>. View it on <a href-"">Github</a> and <a href-"">NPM</a></p>
                <p>Just like the example you're checking out right here. You can checkout more examples <a href="/#examples">here</a>.</p>
               </div>
             </section>
 
+            <!-- Features -->
             <section class="space-md">
-              <h3 id="features">Features</h3>
+              <header class="section-header">
+                <h2 
+                  id="features" 
+                  class="section-header__title">Features</h2>
+                <a class="section-header__link" href="#features">
+                  <span class="section-header__icon" aria-hidden="true">
+                    <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                    </svg>
+                  </span>
+                  <span class="sr-only">Section titled Contents</span>
+                </a>
+              </header>
               <ul>
                 <li>Super duper lightweight, no dependencies, vanilla js.</li>
                 <li>Supports truncating content by max Word or Character  count.</li>
@@ -74,15 +107,39 @@
               </ul>
             </section>
 
-            
-
+            <!-- Install -->
             <section class="space-md">
-              <h3 id="install">Install (via npm)</h3>
+              <header class="section-header">
+                <h2 
+                  id="install" 
+                  class="section-header__title">Install</h2>
+                <a class="section-header__link" href="#install">
+                  <span class="section-header__icon" aria-hidden="true">
+                    <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                    </svg>
+                  </span>
+                  <span class="sr-only">Section titled Contents</span>
+                </a>
+              </header>
               <pre class="code-block"><code>npm i read-smore</code></pre>
             </section>
 
+            <!-- Usage: Setup -->
             <section class="space-md">
-              <h3 id="useage">Useage</h3>
+              <header class="section-header">
+                <h2 
+                  id="useage-setup" 
+                  class="section-header__title">Usage: Setup</h2>
+                <a class="section-header__link" href="#useage-setup">
+                  <span class="section-header__icon" aria-hidden="true">
+                    <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                    </svg>
+                  </span>
+                  <span class="sr-only">Section titled Contents</span>
+                </a>
+              </header>
               <h4>Init ReadSmore()</h4>
               <div class="code-block is-lg">
                 <pre class="code-block__pre">
@@ -117,7 +174,9 @@ ReadSmore(readMores).init()</code>
 &lt;script src="https://unpkg.com/read-smore@2.0.4/dist/index.umd.js"></script></code>
                 </pre>
               </div>
+
               <br/>
+              
               <div class="code-block is-lg">
                 <pre class="code-block__pre">
 <code>// Init JS
@@ -133,6 +192,19 @@ ReadSmore(readMoreEls).init()</code>
               
               <br/>
               <section class="space-sm">
+                <header class="section-header">
+                  <h2 
+                    id="useage-markup" 
+                    class="section-header__title">Usage: Markup</h2>
+                  <a class="section-header__link" href="#useage-markup">
+                    <span class="section-header__icon" aria-hidden="true">
+                      <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                      </svg>
+                    </span>
+                    <span class="sr-only">Section titled Contents</span>
+                  </a>
+                </header>
                 <h4>Example by max word count (via <code class="code-inline">data-read-smore-words</code>) </h4>
                 <p>To truncate content by max <strong>word</strong> count, use the data attribute <code class="code-inline">data-read-smore-words=""</code> with desired value.</p>
                 <div class="code-block is-lg">
@@ -165,30 +237,43 @@ ReadSmore(readMoreEls).init()</code>
                 </pre>
               </div>
             </section>
-            <br/>
+            
             <section class="space-sm">
-              <h4>Provide Options</h4>
-              <p>ReadSmore supports a few options, such as editing the more/less text. See Options table below for more.</p>
+              <h4>Inline Read more</h4>
+              <p>By default the Read more text sits below the content block. However, you can make it inlined with the ellipsed text by importing the provided css</p>
+
+              <div class="code-block is-lg">
+                <pre class="code-block__pre"><code>@import 'read-more/read-more.css'</code></pre>
+              </div>
+              <br/>
+              <p>Then provide the the data-attribute <code class="code-inline">data-read-smore-inline="true"</code></p>
+
               <div class="code-block is-lg">
                 <pre class="code-block__pre">
-<code>import ReadSmore from 'read-smore'
-
-const readMores = document.querySelectorAll('.js-read-smore')
-
-const options = {
-  blockClassName: 'read-more',
-  moreText: 'Custom more text',
-  lessText: 'Custom less text'
-}
-
-ReadSmore(readMores, options).init()</code>
-                  </pre>
-                </div>
-              </section>
+<code>&lt;div 
+  class="js-read-smore" 
+  data-read-smore-words="70" 
+  data-read-smore-inline="true">
+&lt;/div></code>
+                </pre>
+              </div>
             </section>
-
-            <section class="space-md">
-              <h3 id="options">Options</h3>
+            <br/>
+            <!-- Options -->
+            <section class="space-sm">
+              <header class="section-header">
+                <h2 
+                  id="options" 
+                  class="section-header__title">Options</h2>
+                <a class="section-header__link" href="#options">
+                  <span class="section-header__icon" aria-hidden="true">
+                    <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                    </svg>
+                  </span>
+                  <span class="sr-only">Section titled Contents</span>
+                </a>
+              </header>
               <div class="table-block">
                 <table>
                   <thead>
@@ -243,31 +328,43 @@ ReadSmore(readMores, options).init()</code>
               </div>
             </section>
 
-            <section class="space-md">
-              <h3>Inline Read more</h3>
-              <p>By default the Read more text sits below the content block. However, you can make it inlined with the ellipsed text by importing the provided css</p>
-
-              <div class="code-block is-lg">
-                <pre class="code-block__pre"><code>@import 'read-more/read-more.css'</code></pre>
-              </div>
-              <br/>
-              <p>Then provide the the data-attribute <code class="code-inline">data-read-smore-inline="true"</code></p>
-
+            <section class="space-sm">
+              <h4>Passing Options</h4>
+              <p>ReadSmore supports a few options, such as editing the more/less text. See Options table below for more.</p>
               <div class="code-block is-lg">
                 <pre class="code-block__pre">
-<code>&lt;div 
-  class="js-read-smore" 
-  data-read-smore-words="70" 
-  data-read-smore-inline="true">
-&lt;/div></code>
-                </pre>
-            </div>
-          </section>
+<code>import ReadSmore from 'read-smore'
+
+const readMores = document.querySelectorAll('.js-read-smore')
+
+const options = {
+  blockClassName: 'read-more',
+  moreText: 'Custom more text',
+  lessText: 'Custom less text'
+}
+
+ReadSmore(readMores, options).init()</code>
+                  </pre>
+                </div>
+              </section>
+            </section>
         </div>
         <hr class="sep"/>
         <section class="posts space-md">
           <div class="grid">
-            <h3 id="examples">Examples</h3>
+            <header class="section-header">
+              <h2 
+                id="examples" 
+                class="section-header__title">Examples</h2>
+              <a class="section-header__link" href="#examples">
+                <span class="section-header__icon" aria-hidden="true">
+                  <svg height="16" version="1.1" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
+                  </svg>
+                </span>
+                <span class="sr-only">Section titled Contents</span>
+              </a>
+            </header>
               <article class="post">
                 <span class="post__meta">30 words</span>
                 <h2 class="post__title">We choose to go to the moon</h2>

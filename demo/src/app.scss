@@ -32,6 +32,15 @@ html {
   overflow-x:hidden;
 }
 
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
 h2, h3 {
   font-size: 1.35em;
   color: var(--color-dark);
@@ -170,6 +179,7 @@ table {
   }
 }
 
+// Spacing section
 .space-md {
   padding: 4em 0;
 
@@ -241,6 +251,33 @@ table {
   &__icon {
     width: 2em;
     margin: 0 auto;
+  }
+}
+
+// Section Header + anchors
+.section-header {
+  position: relative;
+
+  &__title {
+    display: inline;
+  }
+
+  &__link {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &__icon {
+    left: 3px;
+    position: relative;
+
+    @media (min-width: $mq-md) {
+      position: absolute;
+      left: -22px;
+      top: 8px;
+    }
   }
 }
 
