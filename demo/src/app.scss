@@ -6,12 +6,17 @@ $mq-md: 32em;
   --font-base: 'Work Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monaco, monospace;
   --font-size-code: 0.85em;
+  --font-size-md: 1em;
   --color-dark: #2d130d;
   --color-light: #e7d0b2;
   --color-pink-light: #ffeaf2;
   --color-pink-mid: #d0828f;
   --color-pink-dark: #8a0060;
   --mq-md: 32em;
+
+  @media (min-width: $mq-md) {
+    --font-size-md: 1.1em;
+  }
 }
 
 *, body, html {
@@ -30,6 +35,10 @@ html, body {
 html {
   scroll-behavior: smooth;
   overflow-x:hidden;
+}
+
+body {
+  font-size: var(--font-size-md);
 }
 
 .sr-only {
@@ -57,10 +66,9 @@ h4 {
 }
 
 p {
-  font-size: 1.1em;
   margin-bottom: 1.2em;
   color: #3e3f42;
-  line-height: 1.6;
+  line-height: 1.6;  
 }
 
 a {
@@ -195,11 +203,13 @@ table {
   border-bottom: 0;
 }
 
+
 // Page Layout
 .page {
   position: relative;
   margin: 0  auto;
   padding: 2em 0;
+  overflow-x: hidden;
   @media (min-width: $mq-md) {
     padding: 4em 0;
   }
@@ -210,9 +220,15 @@ table {
   padding: 1em 0;
 
   &__grid {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    
     @media (min-width: $mq-md) {
       display: flex;
       align-items: center;
+      flex-direction: row;
+      justify-content: flex-start;
     }
   }
 
@@ -224,8 +240,10 @@ table {
   }
 
   &__heading {
+    padding-right: 2em;;
     @media (min-width: $mq-md) {
       padding-left: 2em;
+      padding-right: 0;
     }
   }
 
@@ -233,8 +251,11 @@ table {
     display:block;
   }
   &__title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    @media (min-width: $mq-md) {
+      font-size: 2rem;
+    }
   }
 
   &__text {
@@ -257,6 +278,8 @@ table {
 // Section Header + anchors
 .section-header {
   position: relative;
+  display: block;
+  margin-bottom: 1em;
 
   &__title {
     display: inline;
