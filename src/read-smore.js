@@ -58,6 +58,12 @@ function ReadSmore(element, options) {
     return false
   }
 
+  /**
+   * Is inline option
+   * @private
+   * @param {HTML element} el - element instance
+   * @returns {Bool}
+   */
   function isInline(el) {
     if (el.dataset.readSmoreInline !== undefined || options.isInline === true) {
       return true
@@ -205,6 +211,12 @@ function ReadSmore(element, options) {
     })
   }
 
+  /**
+   * Add styles for inline option
+   * @private
+   * @param {HTML Elmenent} el - single element instance
+   * @param {HTML Elmenent} link - link wrapper element
+   */
   function handleInlineStyles(el, link) {
     if (el) {
       el.lastElementChild.style.display = 'inline'
