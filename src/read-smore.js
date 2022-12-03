@@ -58,6 +58,14 @@ function ReadSmore(element, options) {
     return false
   }
 
+  function isInline(el) {
+    if (el.dataset.readSmoreInline !== undefined || options.isInline === true) {
+      return true
+    }
+
+    return false
+  }
+
   /**
    * Get Count of characters or words.
    * Favors Characters from data att, then option, then words.
@@ -145,12 +153,16 @@ function ReadSmore(element, options) {
    * @param {Number} idx - index reference of looped item
    */
   function createLink(idx) {
+    const isInlineLink = isInline(element[idx])
     const linkWrap = document.createElement('span')
     linkWrap.className = `${options.blockClassName}__link-wrap`
     linkWrap.innerHTML = linkTmpl(idx)
-    // insert link
+
+    if (isInlineLink) {
+      handleInlineStyles(element[idx], linkWrap)
+    }
     element[idx].after(linkWrap)
-    handleLinkClick(idx)
+    handleLinkClick(idx, isInlineLink)
   }
 
   /**
@@ -173,7 +185,7 @@ function ReadSmore(element, options) {
    * @private
    * @param {Number} index - index of clicked link
    */
-  function handleLinkClick(idx) {
+  function handleLinkClick(idx, isInlineLink) {
     const link = document.querySelector(`#${options.blockClassName}_${idx}`)
 
     link.addEventListener('click', (e) => {
@@ -183,12 +195,22 @@ function ReadSmore(element, options) {
         element[idx].innerHTML = settings.originalContentArr[idx]
         target.innerHTML = options.lessText
         target.dataset.clicked = true
+        if (isInlineLink) handleInlineStyles(element[idx])
       } else {
         element[idx].innerHTML = settings.truncatedContentArr[idx]
         target.innerHTML = options.moreText
         target.dataset.clicked = false
+        if (isInlineLink) handleInlineStyles(element[idx])
       }
     })
+  }
+
+  function handleInlineStyles(el, link) {
+    if (el) {
+      el.lastElementChild.style.display = 'inline'
+      el.style.display = 'inline'
+    }
+    if (link) link.style.display = 'inline'
   }
 
   // API
