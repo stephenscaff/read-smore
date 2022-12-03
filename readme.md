@@ -22,14 +22,15 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 
 ## 📌 Features
 
-- Super lightweight, no dependencies, just vanilla js.
+- Super lightweight, no dependencies, vanilla js, es6.
 - Supports truncating content by max word or character count.
-- Use data attributes to control max words/characters count, or via options.
+- Define max word or characters via data attribute or option
 - Adds ellipse after truncated content.
 - Preserves existing markup (nice).
 - Read more / Read less text is customizable.
 - Block level class name is customizable.
-- Read More text can be block or inline via provided (and super minimal) css
+- Read More link can be inlined with truncated content, or as block level element below.
+- No CSS deps, lib is 100% js.
 - Hybrid NPM Module, supporting `import` and `require`
 
 <br>
@@ -201,20 +202,13 @@ const options = {
 ReadSmore(readMores, options).init()
 ```
 
-#### Make Read more link inline
+#### Inline Read More link
 
-To have the Read More link appear inline with the ellipsed content, as opposed to below it, some very simple styles are included in the package.
-Import them in your css:
+You can have the Read More link appear inline with the ellipsed content, as opposed to below it.
 
-**CSS File**
+Note: As of v2.2.0, required css dep was removed in favor of a pure js approach that simply applied inline styles.
 
-```
-import 'read-more/index.css';
-```
-
-Then use the data attribute `data-read-smore-inline="true"
-
-**JS**
+**1: Via `data-read-smore-inline`**
 
 ```
 <div
@@ -228,7 +222,17 @@ Then use the data attribute `data-read-smore-inline="true"
 </div>
 ```
 
-Note, will probably remove the required css dep in favor inline styles or a js only solution.
+**2: Via Option (effects all readSmore instances**
+
+```
+const readMores = document.querySelectorAll('.js-read-smore')
+
+const options = {
+  isInline: true
+}
+
+const RMs = ReadSmore(readMores, options)
+```
 
 <br/>
 
@@ -245,8 +249,8 @@ Note, will probably remove the required css dep in favor inline styles or a js o
 - ~~Rename everything to 'ReadSmore'~~
 - ~~Add docs / demo pages via gh-pages~~
 - ~~Bundle as Hybrid NPM Module to support `import` and `require`~~
+- ~~Remove CSS needed for inline option~~
 - Provide callbacks on open/close
 - Provide a destroy method
 - Provide a solution for content injected after page load
-- Remove CSS needed for inline option
 - Add some tests
