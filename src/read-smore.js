@@ -10,7 +10,8 @@ const defaultOptions = {
   charsCount: null,
   moreText: 'Read More',
   lessText: 'Read Less',
-  isInline: false
+  isInline: false,
+  linkElement: 'a'
 }
 
 /**
@@ -178,11 +179,11 @@ function ReadSmore(element, options) {
    */
   function linkTmpl(idx) {
     return `
-      <a id="${options.blockClassName}_${idx}"
+      <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
         style="cursor:pointer">
           ${options.moreText}
-      </a>
+      </${options.linkElement}>
     `
   }
 
