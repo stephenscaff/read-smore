@@ -108,6 +108,7 @@ ReadSmore(readMoreEls).init()
 | wordsCount     | Number  | Default max words (if no data attribute)        | `30`         |
 | charsCount     | Number  | Default max characters (if no data attribute)   | `null`       |
 | isInline       | Boolean | Styles link text inline with content            | `false`      |
+| linkElement    | String  | Change expander element                         | `a`          |
 
 <br>
 
