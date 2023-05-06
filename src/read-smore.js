@@ -182,6 +182,7 @@ function ReadSmore(element, options) {
       <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
         style="cursor:pointer"
+        aria-expanded="false"a
         tabIndex="0">
           ${options.moreText}
       </${options.linkElement}>
@@ -218,11 +219,13 @@ function ReadSmore(element, options) {
       element[idx].innerHTML = settings.originalContentArr[idx]
       target.innerHTML = options.lessText
       target.dataset.clicked = true
+      target.ariaExpanded = true
       if (isInlineLink) handleInlineStyles(element[idx])
     } else {
       element[idx].innerHTML = settings.truncatedContentArr[idx]
       target.innerHTML = options.moreText
       target.dataset.clicked = false
+      target.ariaExpanded = false
       if (isInlineLink) handleInlineStyles(element[idx])
     }
   }
