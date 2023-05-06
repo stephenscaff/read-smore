@@ -545,10 +545,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _readSmoreJs = require("./read-smore.js");
 var _readSmoreJsDefault = parcelHelpers.interopDefault(_readSmoreJs);
-var _readSmoreCss = require("./read-smore.css");
 exports.default = (0, _readSmoreJsDefault.default);
 
-},{"./read-smore.js":"7XPz6","./read-smore.css":"ayeL7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7XPz6":[function(require,module,exports) {
+},{"./read-smore.js":"7XPz6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7XPz6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utils = require("./utils");
@@ -561,7 +560,8 @@ var _utils = require("./utils");
     charsCount: null,
     moreText: "Read More",
     lessText: "Read Less",
-    isInline: false
+    isInline: false,
+    linkElement: "a"
 };
 /**
  * ReadSmore
@@ -591,6 +591,15 @@ var _utils = require("./utils");
    * @param {HTML Elmenent} el - single element instance
    */ function isChars(el) {
         if (el.dataset.readSmoreChars !== undefined || options.charsCount !== null) return true;
+        return false;
+    }
+    /**
+   * Is inline option
+   * @private
+   * @param {HTML element} el - element instance
+   * @returns {Bool}
+   */ function isInline(el) {
+        if (el.dataset.readSmoreInline !== undefined || options.isInline === true) return true;
         return false;
     }
     /**
@@ -644,12 +653,13 @@ var _utils = require("./utils");
    * @private
    * @param {Number} idx - index reference of looped item
    */ function createLink(idx) {
+        const isInlineLink = isInline(element[idx]);
         const linkWrap = document.createElement("span");
         linkWrap.className = `${options.blockClassName}__link-wrap`;
         linkWrap.innerHTML = linkTmpl(idx);
-        // insert link
+        if (isInlineLink) handleInlineStyles(element[idx], linkWrap);
         element[idx].after(linkWrap);
-        handleLinkClick(idx);
+        setupToggleEvents(idx, isInlineLink);
     }
     /**
    * Read More Link Template
@@ -657,39 +667,67 @@ var _utils = require("./utils");
    * @returns {String} - html string
    */ function linkTmpl(idx) {
         return `
-      <a id="${options.blockClassName}_${idx}"
+      <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
-        style="cursor:pointer">
+        style="cursor:pointer"
+        aria-expanded="false"a
+        tabIndex="0">
           ${options.moreText}
-      </a>
+      </${options.linkElement}>
     `;
     }
     /**
-   * More/Less Link click handler
+   * Sets up and calls click and keyup (enter key) events
    * @private
-   * @param {Number} index - index of clicked link
-   */ function handleLinkClick(idx) {
+   * @param {Number} idx - index of clicked link
+   * @param {Bool} isInlineLink - if link element is inline with content
+   */ function setupToggleEvents(idx, isInlineLink) {
         const link = document.querySelector(`#${options.blockClassName}_${idx}`);
-        link.addEventListener("click", (e)=>{
-            element[idx].classList.toggle("is-expanded");
-            const target = e.currentTarget;
-            if (target.dataset.clicked !== "true") {
-                element[idx].innerHTML = settings.originalContentArr[idx];
-                target.innerHTML = options.lessText;
-                target.dataset.clicked = true;
-            } else {
-                element[idx].innerHTML = settings.truncatedContentArr[idx];
-                target.innerHTML = options.moreText;
-                target.dataset.clicked = false;
-            }
+        link.addEventListener("click", (event)=>handleToggle(event, idx, isInlineLink));
+        link.addEventListener("keyup", (event)=>{
+            if (event.keyCode === 13) handleToggle(event, idx, isInlineLink);
         });
+    }
+    /**
+   * Toggle event
+   * @private
+   * @param {Event} e - click | keyup event
+   * @param {Number} idx - index of clicked link
+   * @param {Bool} isInlineLink - if link element is inline with content
+   */ function handleToggle(e, idx, isInlineLink) {
+        element[idx].classList.toggle("is-expanded");
+        const target = e.currentTarget;
+        if (target.dataset.clicked !== "true") {
+            element[idx].innerHTML = settings.originalContentArr[idx];
+            target.innerHTML = options.lessText;
+            target.dataset.clicked = true;
+            target.ariaExpanded = true;
+            if (isInlineLink) handleInlineStyles(element[idx]);
+        } else {
+            element[idx].innerHTML = settings.truncatedContentArr[idx];
+            target.innerHTML = options.moreText;
+            target.dataset.clicked = false;
+            target.ariaExpanded = false;
+            if (isInlineLink) handleInlineStyles(element[idx]);
+        }
+    }
+    /**
+   * Add styles for inline option
+   * @private
+   * @param {HTML Elmenent} el - single element instance
+   * @param {HTML Elmenent} link - link wrapper element
+   */ function handleInlineStyles(el, link) {
+        if (el) {
+            el.lastElementChild.style.display = "inline";
+            el.style.display = "inline";
+        }
+        if (link) link.style.display = "inline";
     }
     // API
     return {
         init: init
     };
 }
-ReadSmore.options = defaultOptions;
 exports.default = ReadSmore;
 
 },{"./utils":"jxTvD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxTvD":[function(require,module,exports) {
@@ -761,6 +799,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"ayeL7":[function() {},{}]},["2xt1j","86ByF"], "86ByF", "parcelRequire1eae")
+},{}]},["2xt1j","86ByF"], "86ByF", "parcelRequire1eae")
 
 //# sourceMappingURL=index.27ad7d95.js.map
