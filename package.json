@@ -1,6 +1,6 @@
 {
   "name": "read-smore",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A simple read more / read less feature in vanilla js",
   "author": "Stephen Scaff <stephenscaff.com>",
   "license": "MIT",
