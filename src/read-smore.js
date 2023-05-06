@@ -169,7 +169,7 @@ function ReadSmore(element, options) {
       handleInlineStyles(element[idx], linkWrap)
     }
     element[idx].after(linkWrap)
-    handleLinkClick(idx, isInlineLink)
+    setupToggleEvents(idx, isInlineLink)
   }
 
   /**
@@ -181,35 +181,50 @@ function ReadSmore(element, options) {
     return `
       <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
-        style="cursor:pointer">
+        style="cursor:pointer"
+        tabIndex="0">
           ${options.moreText}
       </${options.linkElement}>
     `
   }
 
   /**
-   * More/Less Link click handler
+   * Sets up and calls click and keyup (enter key) events
    * @private
-   * @param {Number} index - index of clicked link
+   * @param {Number} idx - index of clicked link
+   * @param {Bool} isInlineLink - if link element is inline with content
    */
-  function handleLinkClick(idx, isInlineLink) {
+  function setupToggleEvents(idx, isInlineLink) {
     const link = document.querySelector(`#${options.blockClassName}_${idx}`)
-
-    link.addEventListener('click', (e) => {
-      element[idx].classList.toggle('is-expanded')
-      const target = e.currentTarget
-      if (target.dataset.clicked !== 'true') {
-        element[idx].innerHTML = settings.originalContentArr[idx]
-        target.innerHTML = options.lessText
-        target.dataset.clicked = true
-        if (isInlineLink) handleInlineStyles(element[idx])
-      } else {
-        element[idx].innerHTML = settings.truncatedContentArr[idx]
-        target.innerHTML = options.moreText
-        target.dataset.clicked = false
-        if (isInlineLink) handleInlineStyles(element[idx])
-      }
+    link.addEventListener('click', (event) =>
+      handleToggle(event, idx, isInlineLink)
+    )
+    link.addEventListener('keyup', (event) => {
+      if (event.keyCode === 13) handleToggle(event, idx, isInlineLink)
     })
+  }
+
+  /**
+   * Toggle event
+   * @private
+   * @param {Event} e - click | keyup event
+   * @param {Number} idx - index of clicked link
+   * @param {Bool} isInlineLink - if link element is inline with content
+   */
+  function handleToggle(e, idx, isInlineLink) {
+    element[idx].classList.toggle('is-expanded')
+    const target = e.currentTarget
+    if (target.dataset.clicked !== 'true') {
+      element[idx].innerHTML = settings.originalContentArr[idx]
+      target.innerHTML = options.lessText
+      target.dataset.clicked = true
+      if (isInlineLink) handleInlineStyles(element[idx])
+    } else {
+      element[idx].innerHTML = settings.truncatedContentArr[idx]
+      target.innerHTML = options.moreText
+      target.dataset.clicked = false
+      if (isInlineLink) handleInlineStyles(element[idx])
+    }
   }
 
   /**
@@ -231,7 +246,5 @@ function ReadSmore(element, options) {
     init: init
   }
 }
-
-ReadSmore.options = defaultOptions
 
 export default ReadSmore
