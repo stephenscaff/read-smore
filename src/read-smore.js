@@ -182,7 +182,7 @@ function ReadSmore(element, options) {
       <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
         style="cursor:pointer"
-        aria-expanded="false"a
+        aria-expanded="false"
         tabIndex="0">
           ${options.moreText}
       </${options.linkElement}>
