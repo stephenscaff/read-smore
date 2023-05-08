@@ -201,7 +201,7 @@ function ReadSmore(element, options) {
       handleToggle(event, idx, isInlineLink)
     )
     link.addEventListener('keyup', (event) => {
-      if (event.keyCode === 13) handleToggle(event, idx, isInlineLink)
+      if (event.keyCode === 13 && options.linkElement === 'a') handleToggle(event, idx, isInlineLink)
     })
   }
 
