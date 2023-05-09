@@ -12,7 +12,7 @@
     >
     <meta
       name="description"
-      content="ReadSmore.js is a dependency free, lightweight, vanilla JS library by Stephen Scaff that truncates content with a Read more / Read less link. "
+      content="ReadSmore.js is a dependency free, lightweight, vanilla JS plugin to truncate content. Authored by Stephen Scaff. "
     >
     <script 
     type="module" 
@@ -35,6 +35,17 @@
       href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=IBM+Plex+Mono:wght@300&display=swap" 
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="fav.png">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ReadSmore.js" />
+    <meta property="og:description" content="ReadSmore.js is a dependency free, lightweight, vanilla JS plugin to truncate content. Authored by Stephen Scaff. " />
+    <meta property="og:title" content="ReadSmore.js by Stephen Scaff" />
+    <meta property="og:image" content="meta.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />        
+    <meta name="twitter:site" content="@stephenscaff" />
+    <meta name="twitter:title" content="ReadSmore.js" />
+    <meta name="twitter:description" content="ReadSmore.js is a dependency free, lightweight, vanilla JS plugin to truncate content. Authored by Stephen Scaff. " />
+    <meta name="twitter:image" content="meta.jpg"></meta>
   </head>
   <body>
     <main>
@@ -43,11 +54,11 @@
           <header class="page-header">
             <div class="page-header__grid">
               <figure class="page-header__figure">
-                <img class="page-header__img" src="./read-smore-dood.jpg">
+                <img class="page-header__img" src="read-smore-dood.jpg">
               </figure>
               <div class="page-header__heading">
                 <h1 class="page-header__title">Read Smore</h1>
-                <p class="page-header__text">A vanilla JS Read More plugin / module</p>
+                <p class="page-header__text">A vanilla JS content truncation plugin / module</p>
 
                 <div class="page-header__pretitle">
                   <a href="https://github.com/stephenscaff/read-smore" target="_blank">Repo</a>
@@ -68,7 +79,7 @@
                       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                     </svg>
                   </span>
-                  <span class="sr-only">Section titled Contents</span>
+                  <span class="sr-only">About Section</span>
                 </a>
               </header>
               <div class="js-read-smore" 
@@ -91,7 +102,7 @@
                       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                     </svg>
                   </span>
-                  <span class="sr-only">Section titled Contents</span>
+                  <span class="sr-only">Features Section</span>
                 </a>
               </header>
               <ul>
@@ -119,7 +130,7 @@
                       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                     </svg>
                   </span>
-                  <span class="sr-only">Section titled Contents</span>
+                  <span class="sr-only">Install Section</span>
                 </a>
               </header>
               <pre class="code-block"><code>npm i read-smore</code></pre>
@@ -137,7 +148,7 @@
                       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                     </svg>
                   </span>
-                  <span class="sr-only">Section titled Contents</span>
+                  <span class="sr-only">Usage and Setup Section</span>
                 </a>
               </header>
               <h4>Init ReadSmore()</h4>
@@ -202,7 +213,7 @@ ReadSmore(readMoreEls).init()</code>
                         <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                       </svg>
                     </span>
-                    <span class="sr-only">Section titled Contents</span>
+                    <span class="sr-only">Usage - Markup Section</span>
                   </a>
                 </header>
                 <h4>Example by max word count (via <code class="code-inline">data-read-smore-words</code>) </h4>
@@ -271,7 +282,7 @@ ReadSmore(readMoreEls).init()</code>
                       <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                     </svg>
                   </span>
-                  <span class="sr-only">Section titled Contents</span>
+                  <span class="sr-only">Options Section</span>
                 </a>
               </header>
               <div class="table-block">
@@ -362,7 +373,7 @@ ReadSmore(readMores, options).init()</code>
                     <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentcolor"></path>
                   </svg>
                 </span>
-                <span class="sr-only">Section titled Contents</span>
+                <span class="sr-only">Examples Section</span>
               </a>
             </header>
               <article class="post">
