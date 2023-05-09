@@ -46,7 +46,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
     "eslint": "^8.11.0",
-    "gh-pages": "^3.2.3",
+    "gh-pages": "^5.0.0",
     "microbundle": "^0.14.2",
     "parcel": "^2.8.0"
   }
