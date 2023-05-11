@@ -37,10 +37,10 @@
     "clean": "rm -rf dist",
     "build": "microbundle",
     "dev": "npm run demo:start && microbundle watch",
-    "demo:start": "parcel ./demo/src/*.html --dist-dir ./demo/dist",
-    "demo:build": "parcel build ./demo/src/index.html --dist-dir ./demo/dist --public-url ./",
-    "demo:deploy": "npm run demo:build && gh-pages -d ./demo/dist",
-    "demo:clean": "rm -rf ./demo/dist",
+    "demo:start": "parcel ./docs/src/*.html --dist-dir ./docs/dist",
+    "demo:build": "parcel build ./docs/src/index.html --dist-dir ./docs/dist --public-url ./",
+    "demo:deploy": "npm run demo:build && gh-pages -d ./docs/dist",
+    "demo:clean": "rm -rf ./docs/dist",
     "lint": "eslint ./src/**js --fix "
   },
   "devDependencies": {
