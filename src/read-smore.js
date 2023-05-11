@@ -182,7 +182,7 @@ function ReadSmore(element, options) {
       <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
         style="cursor:pointer"
-        aria-expanded="false"a
+        aria-expanded="false"
         tabIndex="0">
           ${options.moreText}
       </${options.linkElement}>
@@ -201,7 +201,7 @@ function ReadSmore(element, options) {
       handleToggle(event, idx, isInlineLink)
     )
     link.addEventListener('keyup', (event) => {
-      if (event.keyCode === 13) handleToggle(event, idx, isInlineLink)
+      if (event.keyCode === 13 && options.linkElement === 'a') handleToggle(event, idx, isInlineLink)
     })
   }
 
