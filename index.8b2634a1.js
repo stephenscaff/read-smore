@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"2xt1j":[function(require,module,exports) {
+})({"4TJui":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "7e87443527ad7d95";
+module.bundle.HMR_BUNDLE_ID = "8332e5918b2634a1";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -531,7 +531,7 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"86ByF":[function(require,module,exports) {
+},{}],"ca2Pg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _src = require("../../src");
 var _srcDefault = parcelHelpers.interopDefault(_src);
@@ -670,7 +670,7 @@ var _utils = require("./utils");
       <${options.linkElement} id="${options.blockClassName}_${idx}"
         class="${options.blockClassName}__link"
         style="cursor:pointer"
-        aria-expanded="false"a
+        aria-expanded="false"
         tabIndex="0">
           ${options.moreText}
       </${options.linkElement}>
@@ -685,7 +685,7 @@ var _utils = require("./utils");
         const link = document.querySelector(`#${options.blockClassName}_${idx}`);
         link.addEventListener("click", (event)=>handleToggle(event, idx, isInlineLink));
         link.addEventListener("keyup", (event)=>{
-            if (event.keyCode === 13) handleToggle(event, idx, isInlineLink);
+            if (event.keyCode === 13 && options.linkElement === "a") handleToggle(event, idx, isInlineLink);
         });
     }
     /**
@@ -799,6 +799,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["2xt1j","86ByF"], "86ByF", "parcelRequire1eae")
+},{}]},["4TJui","ca2Pg"], "ca2Pg", "parcelRequire1eae")
 
-//# sourceMappingURL=index.27ad7d95.js.map
+//# sourceMappingURL=index.8b2634a1.js.map
