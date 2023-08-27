@@ -656,7 +656,7 @@ var _utils = require("./utils");
         const isInlineLink = isInline(element[idx]);
         const linkWrap = document.createElement("span");
         linkWrap.className = `${options.blockClassName}__link-wrap`;
-        linkWrap.innerHTML = linkTmpl(idx);
+        linkWrap.innerHTML = linkTmpl();
         if (isInlineLink) handleInlineStyles(element[idx], linkWrap);
         element[idx].after(linkWrap);
         setupToggleEvents(idx, isInlineLink);
@@ -665,9 +665,9 @@ var _utils = require("./utils");
    * Read More Link Template
    * @param {Number} idx
    * @returns {String} - html string
-   */ function linkTmpl(idx) {
+   */ function linkTmpl() {
         return `
-      <${options.linkElement} id="${options.blockClassName}_${idx}"
+      <${options.linkElement}
         class="${options.blockClassName}__link"
         style="cursor:pointer"
         aria-expanded="false"
@@ -682,7 +682,7 @@ var _utils = require("./utils");
    * @param {Number} idx - index of clicked link
    * @param {Bool} isInlineLink - if link element is inline with content
    */ function setupToggleEvents(idx, isInlineLink) {
-        const link = document.querySelector(`#${options.blockClassName}_${idx}`);
+        const link = element[idx].nextSibling.firstElementChild;
         link.addEventListener("click", (event)=>handleToggle(event, idx, isInlineLink));
         link.addEventListener("keyup", (event)=>{
             if (event.keyCode === 13 && options.linkElement === "a") handleToggle(event, idx, isInlineLink);
