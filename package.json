@@ -44,10 +44,9 @@
     "lint": "eslint ./src/**js --fix "
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.0",
-    "eslint": "^8.11.0",
+    "@parcel/transformer-sass": "^2.10.0",
+    "eslint": "^8.52.0",
     "gh-pages": "^5.0.0",
-    "microbundle": "^0.14.2",
-    "parcel": "^2.8.0"
+    "parcel": "^2.10.0"
   }
 }
