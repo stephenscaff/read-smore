@@ -163,7 +163,7 @@ function ReadSmore(element, options) {
     const isInlineLink = isInline(element[idx])
     const linkWrap = document.createElement('span')
     linkWrap.className = `${options.blockClassName}__link-wrap`
-    linkWrap.innerHTML = linkTmpl()
+    linkWrap.innerHTML = linkTmpl(element[idx])
 
     if (isInlineLink) {
       handleInlineStyles(element[idx], linkWrap)
@@ -177,14 +177,16 @@ function ReadSmore(element, options) {
    * @param {Number} idx
    * @returns {String} - html string
    */
-  function linkTmpl() {
+  function linkTmpl(el) {
+    const moreTextData = el.dataset.readSmoreMoreText
+    const moreText = moreTextData || options.moreText
     return `
       <${options.linkElement}
         class="${options.blockClassName}__link"
         style="cursor:pointer"
         aria-expanded="false"
         tabIndex="0">
-          ${options.moreText}
+          ${moreText}
       </${options.linkElement}>
     `
   }
@@ -201,7 +203,8 @@ function ReadSmore(element, options) {
       handleToggle(event, idx, isInlineLink)
     )
     link.addEventListener('keyup', (event) => {
-      if (event.keyCode === 13 && options.linkElement === 'a') handleToggle(event, idx, isInlineLink)
+      if (event.keyCode === 13 && options.linkElement === 'a')
+        handleToggle(event, idx, isInlineLink)
     })
   }
 
@@ -213,17 +216,20 @@ function ReadSmore(element, options) {
    * @param {Bool} isInlineLink - if link element is inline with content
    */
   function handleToggle(e, idx, isInlineLink) {
+    const moreTextData = element[idx].dataset.readSmoreMoreText
+    const lessTextData = element[idx].dataset.readSmoreLessText
+
     element[idx].classList.toggle('is-expanded')
     const target = e.currentTarget
     if (target.dataset.clicked !== 'true') {
       element[idx].innerHTML = settings.originalContentArr[idx]
-      target.innerHTML = options.lessText
+      target.innerHTML = lessTextData || options.lessText
       target.dataset.clicked = true
       target.ariaExpanded = true
       if (isInlineLink) handleInlineStyles(element[idx])
     } else {
       element[idx].innerHTML = settings.truncatedContentArr[idx]
-      target.innerHTML = options.moreText
+      target.innerHTML = moreTextData || options.moreText
       target.dataset.clicked = false
       target.ariaExpanded = false
       if (isInlineLink) handleInlineStyles(element[idx])
