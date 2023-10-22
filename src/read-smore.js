@@ -1,9 +1,6 @@
 import { getWordCount, getCharCount, trimSpaces } from './utils'
 ;('use strict')
 
-/**
- * Defaults
- */
 const defaultOptions = {
   blockClassName: 'read-smore',
   wordsCount: 30,
@@ -16,13 +13,15 @@ const defaultOptions = {
 
 /**
  * ReadSmore
+ * A simple Read More / Read Less js plugin that maintains origial markup.
+ *
  * @author @stephenscaff
- * @param {HTML element} element
+ * @param {HTML element} elements
  * @param {Object} options
  * @returns
  */
-function ReadSmore(element, options) {
-  options = Object.assign({}, defaultOptions, options)
+function ReadSmore(elements, options) {
+  options = { ...defaultOptions, ...options }
 
   // Internal Settings
   let settings = {
@@ -36,9 +35,9 @@ function ReadSmore(element, options) {
    * @public
    */
   function init() {
-    for (let i = 0, n = element.length; i < n; ++i) {
-      truncate(element[i], i)
-    }
+    elements.forEach((element, idx) => {
+      truncate(element, idx)
+    })
   }
 
   /**
@@ -49,14 +48,9 @@ function ReadSmore(element, options) {
    * @param {HTML Elmenent} el - single element instance
    */
   function isChars(el) {
-    if (
-      el.dataset.readSmoreChars !== undefined ||
-      options.charsCount !== null
-    ) {
-      return true
-    }
-
-    return false
+    return (
+      el.dataset.readSmoreChars !== undefined || options.charsCount !== null
+    )
   }
 
   /**
@@ -66,11 +60,7 @@ function ReadSmore(element, options) {
    * @returns {Bool}
    */
   function isInline(el) {
-    if (el.dataset.readSmoreInline !== undefined || options.isInline === true) {
-      return true
-    }
-
-    return false
+    return el.dataset.readSmoreInline !== undefined || options.isInline === true
   }
 
   /**
@@ -81,21 +71,12 @@ function ReadSmore(element, options) {
    * @returns {Number}
    */
   function getCount(el) {
-    if (el.dataset.readSmoreChars !== undefined) {
-      return parseInt(el.dataset.readSmoreChars)
-    }
-
-    if (options.charsCount !== null) {
-      return parseInt(options.charsCount)
-    }
-
-    if (el.dataset.readSmoreWords !== undefined) {
-      return parseInt(el.dataset.readSmoreWords)
-    }
-
-    if (options.wordsCount !== null) {
-      return parseInt(options.wordsCount)
-    }
+    return (
+      parseInt(el.dataset.readSmoreChars) ||
+      parseInt(options.charsCount) ||
+      parseInt(el.dataset.readSmoreWords) ||
+      parseInt(options.wordsCount)
+    )
   }
 
   /**
@@ -107,24 +88,14 @@ function ReadSmore(element, options) {
    * @param {Bool} isChars - is by chars
    */
   function ellipse(str, max, isChars = false) {
-    // Trim starting/ending empty spaces
-    const trimedSpaces = trimSpaces(str)
+    const trimmedSpaces = trimSpaces(str)
 
     if (isChars) {
-      return (
-        trimedSpaces
-          .split('')
-          .slice(0, max - 1)
-          .join('') + '...'
-      )
+      return trimmedSpaces.slice(0, max - 1) + '...'
     }
 
-    return (
-      trimedSpaces
-        .split(/\s+/)
-        .slice(0, max - 1)
-        .join(' ') + '...'
-    )
+    const words = trimmedSpaces.split(/\s+/)
+    return words.slice(0, max - 1).join(' ') + '...'
   }
 
   /**
@@ -133,24 +104,23 @@ function ReadSmore(element, options) {
    * gets content's count by words/chars, if defined is less than content, truncate
    * @private
    * @param {HTML Elmenent} el - single element instance
-   * @param {Number} i - current instance index
+   * @param {Number} idx - current instance index
    */
   function truncate(el, idx) {
     const definedCount = getCount(el)
     const originalContent = el.innerHTML
-    const truncateContent = ellipse(originalContent, definedCount, isChars(el))
-    const originalContentCount = isChars(el)
+    const isCharMode = isChars(el)
+    const truncateContent = ellipse(originalContent, definedCount, isCharMode)
+    const originalContentCount = isCharMode
       ? getCharCount(originalContent)
       : getWordCount(originalContent)
 
     settings.originalContentArr.push(originalContent)
     settings.truncatedContentArr.push(truncateContent)
 
-    // bail if total count is less that original content count
     if (definedCount < originalContentCount) {
       el.innerHTML = settings.truncatedContentArr[idx]
-      let self = idx
-      createLink(self)
+      createLink(idx)
     }
   }
 
@@ -160,21 +130,21 @@ function ReadSmore(element, options) {
    * @param {Number} idx - index reference of looped item
    */
   function createLink(idx) {
-    const isInlineLink = isInline(element[idx])
+    const isInlineLink = isInline(elements[idx])
     const linkWrap = document.createElement('span')
     linkWrap.className = `${options.blockClassName}__link-wrap`
-    linkWrap.innerHTML = linkTmpl(element[idx])
+    linkWrap.innerHTML = linkTmpl(elements[idx])
 
     if (isInlineLink) {
-      handleInlineStyles(element[idx], linkWrap)
+      handleInlineStyles(elements[idx], linkWrap)
     }
-    element[idx].after(linkWrap)
+    elements[idx].after(linkWrap)
     setupToggleEvents(idx, isInlineLink)
   }
 
   /**
    * Read More Link Template
-   * @param {Number} idx
+   * @param {HTML Element} el
    * @returns {String} - html string
    */
   function linkTmpl(el) {
@@ -198,7 +168,7 @@ function ReadSmore(element, options) {
    * @param {Bool} isInlineLink - if link element is inline with content
    */
   function setupToggleEvents(idx, isInlineLink) {
-    const link = element[idx].nextSibling.firstElementChild
+    const link = elements[idx].nextSibling.firstElementChild
     link.addEventListener('click', (event) =>
       handleToggle(event, idx, isInlineLink)
     )
@@ -211,29 +181,27 @@ function ReadSmore(element, options) {
   /**
    * Toggle event
    * @private
-   * @param {Event} e - click | keyup event
+   * @param {Event} event - click | keyup event
    * @param {Number} idx - index of clicked link
    * @param {Bool} isInlineLink - if link element is inline with content
    */
-  function handleToggle(e, idx, isInlineLink) {
-    const moreTextData = element[idx].dataset.readSmoreMoreText
-    const lessTextData = element[idx].dataset.readSmoreLessText
+  function handleToggle(event, idx, isInlineLink) {
+    const moreTextData = elements[idx].dataset.readSmoreMoreText
+    const lessTextData = elements[idx].dataset.readSmoreLessText
+    const target = event.currentTarget
+    const clicked = target.dataset.clicked === 'true'
 
-    element[idx].classList.toggle('is-expanded')
-    const target = e.currentTarget
-    if (target.dataset.clicked !== 'true') {
-      element[idx].innerHTML = settings.originalContentArr[idx]
-      target.innerHTML = lessTextData || options.lessText
-      target.dataset.clicked = true
-      target.ariaExpanded = true
-      if (isInlineLink) handleInlineStyles(element[idx])
-    } else {
-      element[idx].innerHTML = settings.truncatedContentArr[idx]
-      target.innerHTML = moreTextData || options.moreText
-      target.dataset.clicked = false
-      target.ariaExpanded = false
-      if (isInlineLink) handleInlineStyles(element[idx])
-    }
+    elements[idx].classList.toggle('is-expanded')
+    elements[idx].innerHTML = clicked
+      ? settings.truncatedContentArr[idx]
+      : settings.originalContentArr[idx]
+    target.innerHTML = clicked
+      ? moreTextData || options.moreText
+      : lessTextData || options.lessText
+    target.dataset.clicked = !clicked
+    target.ariaExpanded = !clicked
+
+    if (isInlineLink) handleInlineStyles(elements[idx])
   }
 
   /**
