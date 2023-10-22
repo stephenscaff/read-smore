@@ -27,7 +27,7 @@ A customizable, lightweight vanilla JS plugin for truncating content with a Read
 - Define max word or characters via data attribute or option
 - Adds ellipse after truncated content.
 - Preserves existing markup (nice).
-- Read more / Read less text is customizable.
+- Read more / Read less text is customizable, via option or data-attribute.
 - Block level class name is customizable.
 - Read More link can be inlined with truncated content, or as block level element below.
 - No CSS deps, lib is 100% js.
@@ -100,15 +100,15 @@ ReadSmore(readMoreEls).init()
 
 `ReadSmore()` accepts a single options param, which supports the following properties:
 
-| Option         | Type    | Description                                     | Default      |
-| -------------- | ------- | ----------------------------------------------- | ------------ |
-| blockClassName | String  | BEM style block name for injected link template | `read-smore` |
-| lessText       | String  | 'Read Less' closer link text                    | `Read more`  |
-| moreText       | String  | 'Read More' expander link text                  | `Read less`  |
-| wordsCount     | Number  | Default max words (if no data attribute)        | `30`         |
-| charsCount     | Number  | Default max characters (if no data attribute)   | `null`       |
-| isInline       | Boolean | Styles link text inline with content            | `false`      |
-| linkElement    | String  | Change expander element                         | `a`          |
+| Option         | Type    | Description                                           | Default      |
+| -------------- | ------- | ----------------------------------------------------- | ------------ |
+| blockClassName | String  | BEM style block name for injected link template       | `read-smore` |
+| lessText       | String  | 'Read Less' closer link text (if no data attribute)   | `Read more`  |
+| moreText       | String  | 'Read More' expander link text (if no data attribute) | `Read less`  |
+| wordsCount     | Number  | Default max words (if no data attribute)              | `30`         |
+| charsCount     | Number  | Default max characters (if no data attribute)         | `null`       |
+| isInline       | Boolean | Styles link text inline with content                  | `false`      |
+| linkElement    | String  | Change expander element                               | `a`          |
 
 <br>
 
@@ -177,6 +177,23 @@ To truncate content by max **character** count, use the data attribute `data-rea
 <div
   class="js-read-smore"
   data-read-smore-chars="150"
+>
+  <p>Stuff and words and stuff and words.</p>
+  <p>Words and stuff and words and stuff.</p>
+  <!-- more HTML content -->
+</div>
+```
+
+#### Example defining read more/less text via data attribute
+
+To truncate content by max **character** count, use the data attribute `data-read-smore-chars=""` with desired value.
+
+```
+<div
+  class="js-read-smore"
+  data-read-smore-chars="150"
+  data-read-smore-more-text="Read Schmore"
+  data-read-smore-less-text="Read Schless"
 >
   <p>Stuff and words and stuff and words.</p>
   <p>Words and stuff and words and stuff.</p>
