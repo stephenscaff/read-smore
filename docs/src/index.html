@@ -248,6 +248,27 @@ ReadSmore(readMoreEls).init()</code>
                 </pre>
               </div>
             </section>
+
+
+            <section class="space-sm">
+              <h4>Example setting more/less text via data attributes</h4>
+              <p>To set custom more/less text, use the data attributes <br/><code class="code-inline">data-read-smore-more-text</code> | <code class="code-inline">data-read-smore-less-text</code> with desired value.
+              <p>This overrides the values set via <code class="code-inline">option.moreText</code> | <code class="code-inline">option.lessText</code> for that instance.</p>
+              <div class="code-block is-lg">
+                <pre class="code-block__pre">
+<code>&lt;div 
+class="js-read-smore" 
+data-read-smore-chars="150" 
+data-read-smore-more-text="Learn Schmore"
+data-read-smore-less-text="Learn Schless"
+>
+&lt;p>Stuff and words and stuff and words.&lt;/p>
+&lt;p>Words and stuff and words and stuff.&lt;/p>
+&lt;!-- more HTML content -->
+&lt;/div></code>
+              </pre>
+            </div>
+          </section>
             
             <section class="space-sm">
               <h4>Inline Read more</h4>
@@ -320,13 +341,13 @@ const RMs = ReadSmore(readMores, options)
                     <tr>
                       <td><code>moreText</code></td>
                       <td>String</td>
-                      <td>Sets "Read more" text</td>
+                      <td>Sets "Read more" text (if no data attribute)</td>
                       <td>Read more</td>
                     </tr>
                     <tr>
                       <td><code>lessText</code></td>
                       <td>String</td>
-                      <td>Sets "Read less" text</td>
+                      <td>Sets "Read less" text (if no data attribute)</td>
                       <td>Read less</td>
                     </tr>
                     <tr>
