@@ -38,5 +38,6 @@ export function removeTags(str) {
     return false
   }
 
-  return str.replace(/<[^>]+>/g, '')
+  const documentFragment = new DOMParser().parseFromString(str, "text/html")
+  return documentFragment.body.textContent
 }
