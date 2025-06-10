@@ -212,7 +212,9 @@ function ReadSmore(elements, options) {
    */
   function handleInlineStyles(el, link) {
     if (el) {
-      el.lastElementChild.style.display = 'inline'
+      if (el.lastElementChild) {
+        el.lastElementChild.style.display = 'inline'
+      }
       el.style.display = 'inline'
     }
     if (link) link.style.display = 'inline'
